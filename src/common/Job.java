@@ -8,6 +8,7 @@ public class Job {
 	String education;
 	String location;
 	String experience;
+	String leadership;
 	
 	public boolean setId(int i) {
 		id = i;
@@ -33,6 +34,10 @@ public class Job {
 		experience = ex;
 		return true;
 	}
+	public boolean setLeadership(String lead) {
+		leadership = lead;
+		return true;
+	}
 	
 	public int getId() {
 		return id;
@@ -51,5 +56,8 @@ public class Job {
 	}
 	public String getExperience() {
 		return experience;
+	}
+	public String getLeadership() {
+		return leadership;
 	}
 }

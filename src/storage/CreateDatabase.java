@@ -26,8 +26,11 @@ public class CreateDatabase {
 
 			strCreate = "CREATE TABLE cv " +
 					"(id INTEGER not NULL, " +
-					" firstName VARCHAR(255), " + 
-					" lastName VARCHAR(255), " + 
+					" name VARCHAR(255), " + 
+					" skills VARCHAR(255), " +
+					" experience VARCHAR(255), " +
+					" education VARCHAR(255), " +
+					" leadership VARCHAR(255), " +
 					" age INTEGER, " + 
 					" PRIMARY KEY ( id ))"; 
 			System.out.println("The SQL query is: " + strCreate); // Echo For debugging
@@ -49,6 +52,7 @@ public class CreateDatabase {
 					" education VARCHAR(255), " +
 					" location VARCHAR(255), " +
 					" experience VARCHAR(255), " +
+					" leadership VARCHAR(255), " +
 					" PRIMARY KEY ( id ))"; 
 			System.out.println("The SQL query is: " + strCreate); // Echo For debugging
 			System.out.println();

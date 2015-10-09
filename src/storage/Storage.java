@@ -8,19 +8,42 @@ import common.Job;
 import common.Ranking;
 
 // JDK 7 and above
-public class Storage {  // Save as "JdbcSelectTest.java"
-//	public static void main(String[] args) {
-//		try 
-//		{
-//			// Step 1: Allocate a database "Connection" object
-//			Connection conn = DriverManager.getConnection(
-//					"jdbc:mysql://localhost:3306/authorific", "root", "root"); // MySQL
-//
-//			// Step 2: Allocate a "Statement" object in the Connection
-//			Statement stmt = conn.createStatement();
-//			// Step 3: Execute a SQL SELECT query, the query result
-//			//  is returned in a "ResultSet" object.
-//			System.out.println("reached here");
+public class Storage {
+	public static void main(String[] args) {
+		try 
+		{
+			// Step 1: Allocate a database "Connection" object
+			 Connection conn = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/resumeparser", "root", "root"); // MySQL
+
+			// Step 2: Allocate a "Statement" object in the Connection
+			 Statement stmt = conn.createStatement();
+			// Step 3: Execute a SQL SELECT query, the query result
+			//  is returned in a "ResultSet" object.
+			
+			CV cv = new CV();
+			cv.setId(1);
+			cv.setName("Anand");
+			cv.setSkills("Java");
+			cv.setEducation("High School");
+			cv.setExperience("Entry Level");
+			cv.setLeadership("Leader");
+			cv.setAge(20);
+			
+			Job job = new Job();
+			job.setId(1);
+			job.setTitle("Manager");
+			job.setSkills("Java");
+			job.setEducation("High School");
+			job.setExperience("Entry Level");
+			job.setLeadership("Leader");
+			job.setLocation("Singapore");
+			
+			Storage st = new Storage();
+			st.saveCV(cv);
+			st.saveJob(job);
+			
+			System.out.println("reached here");
 //			String strSelect = "select * from stories";
 //			System.out.println("The SQL query is: " + strSelect); // Echo For debugging
 //			System.out.println();
@@ -39,12 +62,12 @@ public class Storage {  // Save as "JdbcSelectTest.java"
 //				++rowCount;
 //			}
 //			System.out.println("Total number of records = " + rowCount);
-//
-//		} catch(SQLException ex) {
-//			ex.printStackTrace();
-//		}
-//		// Step 5: Close the resources - Done automatically by try-with-resources
-//	}
+
+		} catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+		// Step 5: Close the resources - Done automatically by try-with-resources
+	}
 	
 	private static Statement sqlStatement() {
 		try {
@@ -66,8 +89,7 @@ public class Storage {  // Save as "JdbcSelectTest.java"
 			ResultSet rset = stmt.executeQuery(strSelect);
 			CV cv = new CV();
 			cv.setId(rset.getInt("id"));
-			cv.setFirstName(rset.getString("firstName"));
-			cv.setLastName(rset.getString("lastName"));
+			cv.setName(rset.getString("name"));
 			cv.setAge(rset.getInt("age"));			
 			return cv;
 		}
@@ -124,12 +146,14 @@ public class Storage {  // Save as "JdbcSelectTest.java"
 		try {
 			Statement stmt = sqlStatement();
 			int id = getLastId("cv") + 1;
-			String sqlInsert = "INSERT INTO cv VALUES('" + id + "', '" + cv.getFirstName() + "', '" 
-				+ cv.getLastName() + "', '" + cv.getAge() + "')";
+			String sqlInsert = "INSERT INTO cv VALUES('" + id + "', '" + cv.getName() + "', '" 
+				+ cv.getSkills() + "', '" + cv.getExperience() + "', '" + cv.getEducation() + "', '"
+				+ cv.getLeadership() + "', '" + cv.getAge() + "')";
 			stmt.executeUpdate(sqlInsert);
 			return true;
 		}
 		catch (SQLException ex){
+			ex.printStackTrace();
 			return false;
 		}
 	}
@@ -139,11 +163,13 @@ public class Storage {  // Save as "JdbcSelectTest.java"
 			Statement stmt = sqlStatement();
 			int id = getLastId("job") + 1;
 			String sqlInsert = "INSERT INTO job VALUES('" + id + "', '" + job.getTitle() + "', '" + job.getSkills()
-				+ "', '" + job.getEducation() + "', '" + job.getLocation() + "', '" + job.getExperience() + "')";
+				+ "', '" + job.getEducation() + "', '" + job.getLocation() + "', '" + job.getExperience() + "', '" 
+				+ job.getLeadership() + "')";
 			stmt.executeUpdate(sqlInsert);
 			return true;
 		}
 		catch (SQLException ex){
+			ex.printStackTrace();
 			return false;
 		}
 	}
@@ -161,6 +187,7 @@ public class Storage {  // Save as "JdbcSelectTest.java"
 			return true;
 		}
 		catch (SQLException ex){
+			ex.printStackTrace();
 			return false;
 		}
 	}
@@ -170,9 +197,15 @@ public class Storage {  // Save as "JdbcSelectTest.java"
 			Statement stmt = sqlStatement();
 			String strSelect = "SELECT max(id) FROM " + tableName;
 			ResultSet rset = stmt.executeQuery(strSelect);
-			return rset.getInt("max(id)");
+			if (rset.next()) {
+				return rset.getInt("max(id)");
+			}
+			else {
+				return 0;
+			}
 		}
 		catch (SQLException ex){
+			ex.printStackTrace();
 			return 0;
 		}
 	}
