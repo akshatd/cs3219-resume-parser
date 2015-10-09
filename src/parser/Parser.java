@@ -7,7 +7,7 @@ import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.util.PDFTextStripper;
 
-public class CVParser {
+public class Parser {
 	// location where the index will be stored.
     private static final String INDEX_DIR = "src/main/resources/";
     private static final String FILE_NAME = "src/resources/SuranjanaSengupta_Resume.pdf";
