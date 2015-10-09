@@ -1,3 +1,7 @@
+package Analyser;
+
+import storage.CV;
+
 public class Analyser 
 {
 	int matchedWords; 
@@ -5,13 +9,12 @@ public class Analyser
 	double percentage;
 	
     //compare all CVs with 1 job description
-    public void compareCVWithJob(CV cv)
+	public void compareCVWithJob(int JobId)
     {
-    	
     }
     
-  //compare all Jobs with 1 CV
-    public void compareJobWithCV()
+    //compare all Jobs with 1 CV
+    public void compareJobWithCV(int CvId)
     {
     	
     }
