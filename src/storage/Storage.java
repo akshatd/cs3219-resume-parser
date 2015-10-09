@@ -123,7 +123,7 @@ public class Storage {  // Save as "JdbcSelectTest.java"
 	public boolean saveCV(CV cv) {
 		try {
 			Statement stmt = sqlStatement();
-			int id = getLastId("cv");
+			int id = getLastId("cv") + 1;
 			String sqlInsert = "INSERT INTO cv VALUES('" + id + "', '" + cv.getFirstName() + "', '" 
 				+ cv.getLastName() + "', '" + cv.getAge() + "')";
 			stmt.executeUpdate(sqlInsert);
@@ -137,7 +137,7 @@ public class Storage {  // Save as "JdbcSelectTest.java"
 	public boolean saveJob(Job job) {
 		try {
 			Statement stmt = sqlStatement();
-			int id = getLastId("job");
+			int id = getLastId("job") + 1;
 			String sqlInsert = "INSERT INTO job VALUES('" + id + "', '" + job.getTitle() + "', '" + job.getSkills()
 				+ "', '" + job.getEducation() + "', '" + job.getLocation() + "', '" + job.getExperience() + "')";
 			stmt.executeUpdate(sqlInsert);
