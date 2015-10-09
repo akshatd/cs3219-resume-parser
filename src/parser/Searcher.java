@@ -6,6 +6,8 @@ import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.*;
 import org.apache.lucene.store.FSDirectory;
+import org.apache.lucene.document.Document;
+import org.apache.pdfbox.ExtractText;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,6 +36,7 @@ public class Searcher {
         Query query = contentQueryParser.parse(queryString);
          // execute the query and get the results
         ScoreDoc[] queryResults = searcher.search(query, numOfResults).scoreDocs;
+//        System.out.println(queryResults.length);
         
         if(queryResults.length>0)
          return 1;
@@ -41,4 +44,5 @@ public class Searcher {
          return 0;
         
     }
+    
 }
