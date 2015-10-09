@@ -1,4 +1,4 @@
-package storage;
+package common;
 
 public class Job {
 	

@@ -3,6 +3,10 @@ package storage;
 import java.sql.*;   // Use classes in java.sql package
 import java.util.ArrayList;
 
+import common.CV;
+import common.Job;
+import common.Ranking;
+
 // JDK 7 and above
 public class Storage {  // Save as "JdbcSelectTest.java"
 //	public static void main(String[] args) {
