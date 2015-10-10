@@ -4,20 +4,75 @@ import java.util.ArrayList;
 
 import common.CV;
 import common.Job;
+import storage.Storage;
 
 
 public class Analyser 
 {
-	int matchedWords = 0; 
-	int totalWords;
-	double percentage;
-	String jobKeyWords;
-	String cvKeyWords;
-	String [] jobKeyWordsArray;
-	String [] cvKeyWordsArray;
-	Job job;
-	CV cv;
+	static int matchedWords = 0; 
+	static int totalWords;
+	static double percentage;
+	static String jobKeyWords;
+	static String cvKeyWords;
+	static String [] jobKeyWordsArray;
+	static String [] cvKeyWordsArray;
+	static Job job;
+	static CV cv;
+	public static void main(String[] args) {
+		try 
+		{
+			// Step 1: Allocate a database "Connection" object
+			 Connection conn = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/resumeparser", "root", "root"); // MySQL
+
+			// Step 2: Allocate a "Statement" object in the Connection
+			 Statement stmt = conn.createStatement();
+			// Step 3: Execute a SQL SELECT query, the query result
+			//  is returned in a "ResultSet" object.
+			
+			cv.setId(1);
+			cv.setName("Anand");
+			cv.setSkills("Java");
+			cv.setEducation("High School");
+			cv.setExperience("Entry Level");
+			cv.setLeadership("Leader");
+			cv.setAge(20);
+			
+			job.setId(1);
+			job.setTitle("Manager");
+			job.setSkills("Java");
+			job.setEducation("High School");
+			job.setExperience("Entry Level");
+			job.setLeadership("Leader");
+			job.setLocation("Singapore");
+			
+			compareCVWithJob(1);
+			
+			System.out.println("reached here");
+//			String strSelect = "select * from stories";
+//			System.out.println("The SQL query is: " + strSelect); // Echo For debugging
+//			System.out.println();
+//
+//			ResultSet rset = stmt.executeQuery(strSelect);
+//
+//			// Step 4: Process the ResultSet by scrolling the cursor forward via next().
+//			//  For each row, retrieve the contents of the cells with getXxx(columnName).
+//			System.out.println("The records selected are:");
+//			int rowCount = 0;
+//			while(rset.next()) {   // Move the cursor to the next row
+//				String title = rset.getString("title");
+//				double maxPost = rset.getDouble("maxPost");
+//				int    id   = rset.getInt("id");
+//				System.out.println(title + ", " + maxPost + ", " + id);
+//				++rowCount;
+//			}
+//			System.out.println("Total number of records = " + rowCount);
+
+		} catch(SQLException ex) {
+			ex.printStackTrace();
+		}
 	
+	}
 	private static Statement sqlStatement() {
 		try {
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/resumeparser", 
@@ -31,7 +86,7 @@ public class Analyser
 		}
 	}
 	
-	public int totalWordsInJob(int jobId, String [] wordsArr)
+	public static int totalWords(int jobId, String [] wordsArr)
 	{
 		int count = 0;
 		for(int i = 0; i < wordsArr.length; i++)
@@ -43,19 +98,20 @@ public class Analyser
 	
 	
     //compare all CVs with 1 job description
-	public void compareCVWithJob(int jobId) throws SQLException
+	public static void compareCVWithJob(int jobId) throws SQLException
     {
 		Statement stmt = sqlStatement();
 		String strSelect = "SELECT jobSkill FROM job WHERE job.id='" + jobId + "'";
-		String strSelect2 = "SELECT COUNT(*) FROM cv";
+		String strSelect2 = "SELECT COUNT(*) AS rowcount FROM cv";
 		ResultSet rset1 = stmt.executeQuery(strSelect);
 		ResultSet rset2 = stmt.executeQuery(strSelect2);
 		jobKeyWords = job.getSkills();  //JobKeyWordsArray will be conceptualised | spearhead | .... | ....
 		jobKeyWordsArray = jobKeyWords.split(",");
-		totalWords = totalWordsInJob(jobId, jobKeyWordsArray);
+		totalWords = totalWords(jobId, jobKeyWordsArray);
+		int count = rset2.getInt("rowcount");
 		for(int i = 0; i < jobKeyWordsArray.length; i++)
 		{
-			for(int j = 0; j < NumOfCol; j++)
+			for(int j = 0; j < count; j++)
 			{
 				cvKeyWords = cv.getSkills();   // get
 				cvKeyWordsArray = cvKeyWords.split(",");
@@ -77,19 +133,20 @@ public class Analyser
     }
     
     //compare all Jobs with 1 CV
-    public void compareJobWithCV(int CvId)
+    public void compareJobWithCV(int CvId) throws SQLException
     {
     	Statement stmt = sqlStatement();
 		String strSelect = "SELECT cvSkill FROM cv WHERE cv.id='" + CvId + "'";
-		String strSelect2 = "SELECT FROM COUNT(*) job";
+		String strSelect2 = "SELECT FROM AS rowcount COUNT(*) job";
 		ResultSet rset1 = stmt.executeQuery(strSelect);
 		ResultSet rset2 = stmt.executeQuery(strSelect2);
 		cvKeyWords = cv.getSkills();  //JobKeyWordsArray will be conceptualised | spearhead | .... | ....
 		cvKeyWordsArray = cvKeyWords.split(",");
-		totalWords = totalWordsInJob(CvId, cvKeyWordsArray);
+		totalWords = totalWords(CvId, cvKeyWordsArray);
+		int count = rset2.getInt("rowcount");
 		for(int i = 0; i < cvKeyWordsArray.length; i++)
 		{
-			for(int j = 0; j < NumOfCol; j++)
+			for(int j = 0; j < count; j++)  //no of records
 			{
 				jobKeyWords = job.getSkills();   // get
 				jobKeyWordsArray = jobKeyWords.split(",");
@@ -110,7 +167,7 @@ public class Analyser
     }
     
     
-    public double calculatePercentage(int matchedWords, int totalWords)
+    public static double calculatePercentage(int matchedWords, int totalWords)
     {	
     	return matchedWords/totalWords*100;	
     }
