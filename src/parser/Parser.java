@@ -2,8 +2,7 @@ package parser;
 
 import java.util.List;
 import java.io.*;
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.util.PDFTextStripper;
@@ -34,19 +33,16 @@ public class Parser {
 		}
 	}
 
-	private List<String> removeSpacesFromList(List<String> list) {
-		for (int i = 0; i < list.size(); i++) {
-			list.get(i).trim();
-			if (StringUtils.isBlank(list.get(i))) {
-				list.remove(i);
+
+	List<String> setFieldContent(String startField, String endField) {
+		
+		List<String> fieldContentList = new ArrayList<String>();
+		
+		for(int i=0; i<fileContent.length; i++) {
+			if (StringUtils.isNotBlank(fileContent[i])) {
+				fieldContentList.add(fileContent[i]);
 			}
 		}
-		return list;
-	}
-
-	List<String> setFieldContent(String startField, String endField) {		
-		
-		List<String> fieldContentList = removeSpacesFromList(new LinkedList<String>(Arrays.asList(fileContent)));
 
 		int tempStartIndex = -1;
 		int tempEndIndex = -1;
