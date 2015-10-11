@@ -9,24 +9,23 @@ import common.CV;
 
 public class CVParser extends Parser {
 
+	private CV thisCv;
 	private List<String> fieldList; // needs to be defined here
-
-	private CV cv;
 	private Map<String, List<String>> cvContentMap = new HashMap<String, List<String>>();
-	
 
 	CVParser(String fileName) {
 		super(fileName);
 	}
 
-	void setCVDetails() {
+	public void setCVDetails() {
+		extractDataFromPdf();
+		setContent();		
 
 		setFieldNames(); // CV Specific Fields
-		searchByField();
+		setFieldContent();
 
-		cv = new CV();
+		thisCv = new CV();
 		setCVContent();
-
 	}
 
 	private void setFieldNames() {
@@ -39,23 +38,18 @@ public class CVParser extends Parser {
 		fieldList.add("end");
 	}
 
-	private void searchByField() {
-
+	private void setFieldContent() {
 		for (int i = 0; i < fieldList.size() - 1; i++) {
-			cvContentMap.put(fieldList.get(i), setFieldContent(fieldList.get(i), fieldList.get(i + 1)));
+			cvContentMap.put(fieldList.get(i), getFieldContent(fieldList.get(i), fieldList.get(i + 1)));
 		}
-
 	}
 
 	private void setCVContent() {
-
-		cv.setFirstName(fileContent[0]);
-		cv.setLastName(fileContent[1]);
-		cv.setCvContentMap(cvContentMap);
+		thisCv.setFirstName(content.get(0));
+		thisCv.setLastName(content.get(0));
+		thisCv.setCvContentMap(cvContentMap);
 	}
-
-	CV getCV() {
-		return cv;
+	public CV getCV(){
+		return thisCv;
 	}
-
 }

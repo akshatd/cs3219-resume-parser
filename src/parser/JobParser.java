@@ -9,18 +9,22 @@ import common.Job;
 
 public class JobParser extends Parser {
 
-	private ArrayList<String> fieldList;
 	private Job thisJob;
+	private ArrayList<String> fieldList;
 	private Map<String, List<String>> contentMap = new HashMap<String, List<String>>();
 	
 	public JobParser(String fileName) {
 		super(fileName);
 	}
 
-	void setCVDetails() {
-		thisJob = new Job();		
+	public void setJobDetails() {
+		extractDataFromPdf();
+		setContent();		
+	
 		setFieldNames(); 
-		searchByField();
+		setFieldContent();
+
+		thisJob = new Job();	
 		thisJob.setContentMap(contentMap);
 	}
 
@@ -35,11 +39,12 @@ public class JobParser extends Parser {
 		fieldList.add("end");
 	}
 
-	private void searchByField() {
-
+	private void setFieldContent() {
 		for (int i = 0; i < fieldList.size()-1; i++) {
-			contentMap.put(fieldList.get(i), setFieldContent(fieldList.get(i), fieldList.get(i + 1)));
+			contentMap.put(fieldList.get(i), getFieldContent(fieldList.get(i), fieldList.get(i + 1)));
 		}
-
+	}
+	public Job getJob(){
+		return thisJob;
 	}
 }

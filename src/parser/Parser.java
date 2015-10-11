@@ -13,14 +13,15 @@ import org.apache.commons.lang3.StringUtils;
 public class Parser {
 
 	private String fileName;
-	protected String[] fileContent;
+	private String[] fileContent;
+	protected List<String> content;
 
 	Parser(String fileName) {
 		this.fileName = fileName;
-		extractDataFromPdf();
+		content = new ArrayList<String>();
 	}
 
-	void extractDataFromPdf() {
+	protected void extractDataFromPdf() {
 		try {
 
 			File pdfFile = new File(fileName);
@@ -35,47 +36,43 @@ public class Parser {
 	}
 
 
-	List<String> setFieldContent(String startField, String endField) {
-		
-		List<String> fieldContentList = new ArrayList<String>();
-		
-		
+	protected void setContent() {
 		for(int i=0; i<fileContent.length; i++) {
 			if (StringUtils.isNotBlank(fileContent[i])) {
 				fileContent[i] = fileContent[i].replaceAll("[0-9]", "");
 				fileContent[i] = fileContent[i].replaceAll("[-+.^:,()<>&]","");
 				
 				if (StringUtils.isAlpha(fileContent[i])) {
-					fieldContentList.add(fileContent[i]);
+					content.add(fileContent[i]);
 				}
 			}
 		}
-		
+	}
 
+	protected List<String> getFieldContent(String startField, String endField) {
 		int tempStartIndex = -1;
 		int tempEndIndex = -1;
 
-		for (int i = 0; i < fieldContentList.size(); i++) {
+		for (int i = 0; i < content.size(); i++) {
 			if (startField.equalsIgnoreCase("start")) {
-				if (fieldContentList.get(i).equalsIgnoreCase(endField)) {
-					return fieldContentList.subList(0, i);
+				if (content.get(i).equalsIgnoreCase(endField)) {
+					return content.subList(0, i);
 				}
 			} else if (endField.equalsIgnoreCase("end")) {
-				if (fieldContentList.get(i).equalsIgnoreCase(startField)) {
-					return fieldContentList.subList(i, fieldContentList.size() - 1);
+				if (content.get(i).equalsIgnoreCase(startField)) {
+					return content.subList(i, content.size() - 1);
 				}
 
 			} else {
-				if (fieldContentList.get(i).equalsIgnoreCase(startField))
+				if (content.get(i).equalsIgnoreCase(startField))
 					tempStartIndex = i;
-				if (fieldContentList.get(i).equalsIgnoreCase(endField))
+				if (content.get(i).equalsIgnoreCase(endField))
 					tempEndIndex = i;
 				if (tempStartIndex != -1 && tempEndIndex != -1) {
-					return fieldContentList.subList(tempStartIndex, tempEndIndex);
+					return content.subList(tempStartIndex, tempEndIndex);
 				}
 			}
 		}
-		return fieldContentList;
+		return content;
 	}
-
 }
