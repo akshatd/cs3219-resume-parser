@@ -45,7 +45,8 @@ public class Parser {
 				fileContent[i] = fileContent[i].replaceAll("[0-9]", "");
 				fileContent[i] = fileContent[i].replaceAll("[-+.^:,()<>&]","");
 				
-				if (StringUtils.isAlpha(fileContent[i])) {				
+				if (StringUtils.isAlpha(fileContent[i])) {
+					fieldContentList.add(fileContent[i]);
 				}
 			}
 		}
