@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.util.PDFTextStripper;
 
+
 import org.apache.commons.lang3.StringUtils;
 
 public class Parser {
@@ -38,11 +39,17 @@ public class Parser {
 		
 		List<String> fieldContentList = new ArrayList<String>();
 		
+		
 		for(int i=0; i<fileContent.length; i++) {
 			if (StringUtils.isNotBlank(fileContent[i])) {
-				fieldContentList.add(fileContent[i]);
+				fileContent[i] = fileContent[i].replaceAll("[0-9]", "");
+				fileContent[i] = fileContent[i].replaceAll("[-+.^:,()<>&]","");
+				
+				if (StringUtils.isAlpha(fileContent[i])) {				
+				}
 			}
 		}
+		
 
 		int tempStartIndex = -1;
 		int tempEndIndex = -1;
