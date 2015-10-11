@@ -9,6 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public class ResumeParser extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.getWriter().print("Fuck you");
+		resp.getWriter().print("hi");
 	}
 }
