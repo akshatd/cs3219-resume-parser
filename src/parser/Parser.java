@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.util.PDFTextStripper;
 
+import common.Word;
+import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -14,11 +16,11 @@ public class Parser {
 
 	private String fileName;
 	private String[] fileContent;
-	protected List<String> content;
+	protected List<Word> content;
 
 	Parser(String fileName) {
 		this.fileName = fileName;
-		content = new ArrayList<String>();
+		content = new ArrayList<Word>();
 	}
 
 	protected void extractDataFromPdf() {
@@ -37,36 +39,40 @@ public class Parser {
 
 
 	protected void setContent() {
+		
+		MaxentTagger tagger = new MaxentTagger("src/taggers/english-bidirectional-distsim.tagger");
+		
 		for(int i=0; i<fileContent.length; i++) {
 			if (StringUtils.isNotBlank(fileContent[i])) {
 				fileContent[i] = fileContent[i].replaceAll("[0-9]", "");
 				fileContent[i] = fileContent[i].replaceAll("[-+.^:,()<>&]","");
 				
 				if (StringUtils.isAlpha(fileContent[i])) {
-					content.add(fileContent[i]);
+					Word tempWord = new Word((fileContent[i]), tagger.tagString(fileContent[i]));
+					content.add(tempWord);
 				}
 			}
 		}
 	}
 
-	protected List<String> getFieldContent(String startField, String endField) {
+	protected List<Word> getFieldContent(String startField, String endField) {
 		int tempStartIndex = -1;
 		int tempEndIndex = -1;
 
 		for (int i = 0; i < content.size(); i++) {
 			if (startField.equalsIgnoreCase("start")) {
-				if (content.get(i).equalsIgnoreCase(endField)) {
+				if (content.get(i).getContent().equalsIgnoreCase(endField)) {
 					return content.subList(0, i);
 				}
 			} else if (endField.equalsIgnoreCase("end")) {
-				if (content.get(i).equalsIgnoreCase(startField)) {
+				if (content.get(i).getContent().equalsIgnoreCase(startField)) {
 					return content.subList(i, content.size() - 1);
 				}
 
 			} else {
-				if (content.get(i).equalsIgnoreCase(startField))
+				if (content.get(i).getContent().equalsIgnoreCase(startField))
 					tempStartIndex = i;
-				if (content.get(i).equalsIgnoreCase(endField))
+				if (content.get(i).getContent().equalsIgnoreCase(endField))
 					tempEndIndex = i;
 				if (tempStartIndex != -1 && tempEndIndex != -1) {
 					return content.subList(tempStartIndex, tempEndIndex);

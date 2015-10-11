@@ -10,11 +10,11 @@ public class CV {
 	private String lastName;
 	private int age;
 	
-	private Map<String, List<String>> cvContentMap;
+	private Map<String, List<Word>> cvContentMap;
 	
 	public boolean setId(int i) {
 		id = i;
-		cvContentMap = new HashMap<String, List<String>>();
+		cvContentMap = new HashMap<String, List<Word>>();
 		return true;
 	}
 	public boolean setFirstName(String fName) {
@@ -29,7 +29,7 @@ public class CV {
 		age = a;
 		return true;
 	}
-	public void setCvContentMap(Map<String, List<String>> cvContentMap) {
+	public void setCvContentMap(Map<String, List<Word>> cvContentMap) {
 		this.cvContentMap = cvContentMap;
 	}
 	
@@ -45,7 +45,7 @@ public class CV {
 	public int getAge() {
 		return age;
 	}
-	public Map<String, List<String>> getCvContentMap() {
+	public Map<String, List<Word>> getCvContentMap() {
 		return cvContentMap;
 	}
 }

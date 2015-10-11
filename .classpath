@@ -22,5 +22,6 @@
 	<classpathentry kind="lib" path="lib/pdfbox-1.8.10.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="lib/commons-lang3-3.4.jar"/>
+	<classpathentry kind="lib" path="lib/stanford-postagger-3.5.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

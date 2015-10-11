@@ -6,12 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 import common.CV;
+import common.Word;
 
 public class CVParser extends Parser {
 
 	private CV thisCv;
 	private List<String> fieldList; // needs to be defined here
-	private Map<String, List<String>> cvContentMap = new HashMap<String, List<String>>();
+	private Map<String, List<Word>> cvContentMap = new HashMap<String, List<Word>>();
 
 	CVParser(String fileName) {
 		super(fileName);
@@ -45,8 +46,8 @@ public class CVParser extends Parser {
 	}
 
 	private void setCVContent() {
-		thisCv.setFirstName(content.get(0));
-		thisCv.setLastName(content.get(0));
+		thisCv.setFirstName(content.get(0).getContent());
+		thisCv.setLastName(content.get(0).getContent());
 		thisCv.setCvContentMap(cvContentMap);
 	}
 	public CV getCV(){

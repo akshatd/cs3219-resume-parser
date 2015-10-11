@@ -6,12 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 import common.Job;
+import common.Word;
 
 public class JobParser extends Parser {
 
 	private Job thisJob;
 	private ArrayList<String> fieldList;
-	private Map<String, List<String>> contentMap = new HashMap<String, List<String>>();
+	private Map<String, List<Word>> contentMap = new HashMap<String, List<Word>>();
 	
 	public JobParser(String fileName) {
 		super(fileName);

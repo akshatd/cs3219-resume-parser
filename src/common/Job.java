@@ -13,10 +13,10 @@ public class Job {
 	String location;
 	String experience;
 	
-	private Map<String, List<String>> contentMap;
+	private Map<String, List<Word>> contentMap;
 	
 	public Job(){
-		contentMap = new HashMap<String, List<String>>();
+		contentMap = new HashMap<String, List<Word>>();
 	}
 	
 	public boolean setId(int i) {
@@ -44,7 +44,7 @@ public class Job {
 		return true;
 	}
 	
-	public void setContentMap(Map<String, List<String>> contentMap) {
+	public void setContentMap(Map<String, List<Word>> contentMap) {
 		this.contentMap = contentMap;
 	}
 	
@@ -66,7 +66,7 @@ public class Job {
 	public String getExperience() {
 		return experience;
 	}
-	public Map<String, List<String>> getContentMap() {
+	public Map<String, List<Word>> getContentMap() {
 		return this.contentMap;
 	}
 }
