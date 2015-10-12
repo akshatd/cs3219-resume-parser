@@ -26,7 +26,7 @@ public class JobParser extends Parser {
 		setFieldContent();
 
 		thisJob = new Job();	
-		thisJob.setContentMap(contentMap);
+		thisJob.setJobContentMap(contentMap);
 	}
 
 	private void setFieldNames() {
@@ -41,8 +41,12 @@ public class JobParser extends Parser {
 	}
 
 	private void setFieldContent() {
-		for (int i = 0; i < fieldList.size()-1; i++) {
+		for (int i = 1; i < fieldList.size()-1; i++) {
+			if(i == 1){
+				contentMap.put(fieldList.get(i), getFieldContent(fieldList.get(i-1), fieldList.get(i + 1)));
+			}else{
 			contentMap.put(fieldList.get(i), getFieldContent(fieldList.get(i), fieldList.get(i + 1)));
+			}
 		}
 	}
 	public Job getJob(){
