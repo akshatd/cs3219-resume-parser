@@ -12,7 +12,7 @@ public class CVTest {
 		p.setCVDetails();
 		
 		CV c = p.getCV();
-		System.out.println(c.getCvContentMap().get("education"));
+		System.out.println(c.getCvContentMap().get("work"));
 	}
 
 }

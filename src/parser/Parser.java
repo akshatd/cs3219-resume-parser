@@ -37,19 +37,20 @@ public class Parser {
 		}
 	}
 
-
 	protected void setContent() {
-		
+
 		MaxentTagger tagger = new MaxentTagger("src/taggers/english-bidirectional-distsim.tagger");
-		
-		for(int i=0; i<fileContent.length; i++) {
+
+		for (int i = 0; i < fileContent.length; i++) {
 			if (StringUtils.isNotBlank(fileContent[i])) {
 				fileContent[i] = fileContent[i].replaceAll("[0-9]", "");
-				fileContent[i] = fileContent[i].replaceAll("[-+.^:,()<>&]","");
-				
+				fileContent[i] = fileContent[i].replaceAll("[-+.^:,()<>&]", "");
+
 				if (StringUtils.isAlpha(fileContent[i])) {
 					Word tempWord = new Word((fileContent[i]), tagger.tagString(fileContent[i]));
-					content.add(tempWord);
+					if (isKeyword(tempWord)) {
+						content.add(tempWord);
+					}
 				}
 			}
 		}
@@ -80,5 +81,26 @@ public class Parser {
 			}
 		}
 		return content;
+	}
+
+	protected boolean isKeyword(Word word) {
+		if (isNoun(word.getPOS()) || isVerb(word.getPOS())) {
+			return true;
+		} else
+			return false;
+	}
+
+	private boolean isNoun(String tag) {
+		if (tag.charAt(0) == 'N') {
+			return true;
+		} else
+			return false;
+	}
+
+	private boolean isVerb(String tag) {
+		if (tag.charAt(0) == 'V') {
+			return true;
+		} else
+			return false;
 	}
 }
