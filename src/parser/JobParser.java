@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import storage.Storage;
 import common.Job;
 import common.Word;
 
@@ -13,6 +14,7 @@ public class JobParser extends Parser {
 	private Job thisJob;
 	private ArrayList<String> fieldList;
 	private Map<String, List<Word>> contentMap = new HashMap<String, List<Word>>();
+	private Storage storage;
 	
 	public JobParser(String fileName) {
 		super(fileName);
@@ -33,7 +35,7 @@ public class JobParser extends Parser {
 		fieldList = new ArrayList<String>();
 		fieldList.add("start");
 		fieldList.add("title");
-		fieldList.add("skills");
+		fieldList.add("technical");
 		fieldList.add("education");
 		fieldList.add("location");
 		fieldList.add("experience");
@@ -51,5 +53,10 @@ public class JobParser extends Parser {
 	}
 	public Job getJob(){
 		return thisJob;
+	}
+	
+	public int saveJob(){
+		storage = new Storage();
+		return storage.saveJob(thisJob);
 	}
 }

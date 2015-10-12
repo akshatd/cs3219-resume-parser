@@ -75,8 +75,11 @@ public class Storage {
 			Statement stmt = sqlStatement();
 			String strSelect = "SELECT * FROM cv WHERE cv.id='" + CVId + "'";
 			ResultSet rset = stmt.executeQuery(strSelect);
-			CV cv = CV.fromString(rset.getString("contentMap"));
-			return cv;
+			if(rset.next()){
+				CV cv = CV.fromString(rset.getString("contentMap"));
+				return cv;
+			}
+			return null;
 		}
 		catch(SQLException ex) {
 			ex.printStackTrace();
@@ -89,8 +92,45 @@ public class Storage {
 			Statement stmt = sqlStatement();
 			String strSelect = "SELECT * FROM job WHERE job.id='" + jobId + "'";
 			ResultSet rset = stmt.executeQuery(strSelect);
-			Job job = Job.fromString(rset.getString("contentMap"));
-			return job;
+			if(rset.next()){
+				Job job = Job.fromString(rset.getString("contentMap"));
+				return job;
+			}
+			return null;
+		}
+		catch(SQLException ex) {
+			ex.printStackTrace();
+			return null;
+		}
+	}
+	
+	public ArrayList<Job> getAllJobs() {
+		try {
+			ArrayList<Job> jobsArray = new ArrayList<Job>(); 
+			Statement stmt = sqlStatement();
+			String strSelect = "SELECT * FROM job";
+			ResultSet rset = stmt.executeQuery(strSelect);
+			while(rset.next()){
+				jobsArray.add(Job.fromString(rset.getString("contentMap")));
+			}
+			return jobsArray;
+		}
+		catch(SQLException ex) {
+			ex.printStackTrace();
+			return null;
+		}
+	}
+	
+	public ArrayList<CV> getAllCVs() {
+		try {
+			ArrayList<CV> CVsArray = new ArrayList<CV>(); 
+			Statement stmt = sqlStatement();
+			String strSelect = "SELECT * FROM cv";
+			ResultSet rset = stmt.executeQuery(strSelect);
+			while(rset.next()){
+				CVsArray.add(CV.fromString(rset.getString("contentMap")));
+			}
+			return CVsArray;
 		}
 		catch(SQLException ex) {
 			ex.printStackTrace();
@@ -121,33 +161,35 @@ public class Storage {
 		}
 	}
 	
-	public boolean saveCV(CV cv) {
+	public int saveCV(CV cv) {
 		try {
 			Statement stmt = sqlStatement();
 			int id = getLastId("cv") + 1;
-			String contentMap = cv.getCvContentMap().toString();
+			cv.setId(id);
+			String contentMap = cv.toString();
 			String sqlInsert = "INSERT INTO cv VALUES('" + id + "','" + contentMap + "')";
 			stmt.executeUpdate(sqlInsert);
-			return true;
+			return id;
 		}
 		catch (SQLException ex){
 			ex.printStackTrace();
-			return false;
+			return 0;
 		}
 	}
 	
-	public boolean saveJob(Job job) {
+	public int saveJob(Job job) {
 		try {
 			Statement stmt = sqlStatement();
 			int id = getLastId("job") + 1;
-			String contentMap = job.getJobContentMap().toString();
+			job.setId(id);
+			String contentMap = job.toString();
 			String sqlInsert = "INSERT INTO job VALUES('" + id + "','" + contentMap + "')";
 			stmt.executeUpdate(sqlInsert);
-			return true;
+			return id;
 		}
 		catch (SQLException ex){
 			ex.printStackTrace();
-			return false;
+			return 0;
 		}
 	}
 	
