@@ -1,6 +1,18 @@
 package common;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class CV {
+<<<<<<< HEAD
+	private int id;
+	private String firstName;
+	private String lastName;
+	private int age;
+	
+	private Map<String, List<Word>> cvContentMap;
+=======
 	int id;
 	String name;
 	String education;
@@ -8,9 +20,11 @@ public class CV {
 	String experience;
 	String leadership;
 	int age;
+>>>>>>> master
 	
 	public boolean setId(int i) {
 		id = i;
+		cvContentMap = new HashMap<String, List<Word>>();
 		return true;
 	}
 	public boolean setName(String nm) {
@@ -37,6 +51,9 @@ public class CV {
 		age = a;
 		return true;
 	}
+	public void setCvContentMap(Map<String, List<Word>> cvContentMap) {
+		this.cvContentMap = cvContentMap;
+	}
 	
 	public int getId() {
 		return id;
@@ -58,5 +75,8 @@ public class CV {
 	}
 	public int getAge() {
 		return age;
+	}
+	public Map<String, List<Word>> getCvContentMap() {
+		return cvContentMap;
 	}
 }

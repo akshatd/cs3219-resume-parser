@@ -1,5 +1,9 @@
 package common;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class Job {
 	
     int id;
@@ -9,6 +13,12 @@ public class Job {
 	String location;
 	String experience;
 	String leadership;
+	
+	private Map<String, List<Word>> contentMap;
+	
+	public Job(){
+		contentMap = new HashMap<String, List<Word>>();
+	}
 	
 	public boolean setId(int i) {
 		id = i;
@@ -39,6 +49,10 @@ public class Job {
 		return true;
 	}
 	
+	public void setContentMap(Map<String, List<Word>> contentMap) {
+		this.contentMap = contentMap;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -57,7 +71,12 @@ public class Job {
 	public String getExperience() {
 		return experience;
 	}
+<<<<<<< HEAD
+	public Map<String, List<Word>> getContentMap() {
+		return this.contentMap;
+=======
 	public String getLeadership() {
 		return leadership;
+>>>>>>> master
 	}
 }
