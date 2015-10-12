@@ -6,14 +6,7 @@ import java.util.Map;
 
 public class Job {
 	
-    int id;
-	String title;
-	String skills;
-	String education;
-	String location;
-	String experience;
-	String leadership;
-	
+    int id;	
 	private Map<String, List<Word>> contentMap;
 	
 	public Job(){
@@ -23,31 +16,7 @@ public class Job {
 	public boolean setId(int i) {
 		id = i;
 		return true;
-	}
-	public boolean setTitle(String t) {
-		title = t;
-		return true;
-	}
-	public boolean setSkills(String s) {
-		skills = s;
-		return true;
-	}
-	public boolean setEducation(String ed) {
-		education = ed;
-		return true;
-	}
-	public boolean setLocation(String l) {
-		location = l;
-		return true;
-	}
-	public boolean setExperience(String ex) {
-		experience = ex;
-		return true;
-	}
-	public boolean setLeadership(String lead) {
-		leadership = lead;
-		return true;
-	}
+	}	
 	
 	public void setContentMap(Map<String, List<Word>> contentMap) {
 		this.contentMap = contentMap;
@@ -56,27 +25,8 @@ public class Job {
 	public int getId() {
 		return id;
 	}
-	public String getTitle() {
-		return title;
-	}
-	public String getSkills() {
-		return skills;
-	}
-	public String getEducation() {
-		return education;
-	}
-	public String getLocation() {
-		return location;
-	}
-	public String getExperience() {
-		return experience;
-	}
-<<<<<<< HEAD
+	
 	public Map<String, List<Word>> getContentMap() {
 		return this.contentMap;
-=======
-	public String getLeadership() {
-		return leadership;
->>>>>>> master
 	}
 }
