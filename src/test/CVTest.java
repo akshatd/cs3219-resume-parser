@@ -1,8 +1,9 @@
-package parser;
+package test;
 
 import java.io.IOException;
 
 import common.CV;
+import parser.CVParser;
 
 public class CVTest {
 	
