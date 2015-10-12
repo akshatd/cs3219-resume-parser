@@ -19,4 +19,9 @@ public class Word {
 	{
 	    return content + ":" + POS;
 	}
+	public static Word fromString(String input){
+		String[] inputs = input.split(":");
+		Word returnWord = new Word(inputs[0], "garbage_" + inputs[1]);
+		return returnWord;
+	}
 }
