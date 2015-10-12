@@ -11,6 +11,6 @@ public class jobTest {
 		jp.setJobDetails();
 		
 		Job j = jp.getJob();
-		System.out.println(j.getContentMap().get("skills"));
+		System.out.println(j.getContentMap().get("title"));
 	}
 }

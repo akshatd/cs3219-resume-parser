@@ -7,10 +7,10 @@ import java.util.Map;
 public class Job {
 	
     int id;	
-	private Map<String, List<Word>> contentMap;
+	private Map<String, List<Word>> jobContentMap;
 	
 	public Job(){
-		contentMap = new HashMap<String, List<Word>>();
+		jobContentMap = new HashMap<String, List<Word>>();
 	}
 	
 	public boolean setId(int i) {
@@ -18,15 +18,15 @@ public class Job {
 		return true;
 	}	
 	
-	public void setContentMap(Map<String, List<Word>> contentMap) {
-		this.contentMap = contentMap;
+	public void setJobContentMap(Map<String, List<Word>> contentMap) {
+		this.jobContentMap = contentMap;
 	}
 	
 	public int getId() {
 		return id;
 	}
 	
-	public Map<String, List<Word>> getContentMap() {
-		return this.contentMap;
+	public Map<String, List<Word>> getJobContentMap() {
+		return this.jobContentMap;
 	}
 }
