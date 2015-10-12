@@ -8,19 +8,30 @@ import common.Job;
 import common.Ranking;
 
 // JDK 7 and above
-public class Storage {  // Save as "JdbcSelectTest.java"
-//	public static void main(String[] args) {
-//		try 
-//		{
-//			// Step 1: Allocate a database "Connection" object
-//			Connection conn = DriverManager.getConnection(
-//					"jdbc:mysql://localhost:3306/authorific", "root", "root"); // MySQL
-//
-//			// Step 2: Allocate a "Statement" object in the Connection
-//			Statement stmt = conn.createStatement();
-//			// Step 3: Execute a SQL SELECT query, the query result
-//			//  is returned in a "ResultSet" object.
-//			System.out.println("reached here");
+public class Storage {
+	public static void main(String[] args) {
+		try 
+		{
+			// Step 1: Allocate a database "Connection" object
+			 Connection conn = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/resumeparser", "root", "root"); // MySQL
+
+			// Step 2: Allocate a "Statement" object in the Connection
+			 Statement stmt = conn.createStatement();
+			// Step 3: Execute a SQL SELECT query, the query result
+			//  is returned in a "ResultSet" object.
+			
+			CV cv = new CV();
+			cv.setId(1);
+			
+			Job job = new Job();
+			job.setId(1);
+			
+			Storage st = new Storage();
+			st.saveCV(cv);
+			st.saveJob(job);
+			
+			System.out.println("reached here");
 //			String strSelect = "select * from stories";
 //			System.out.println("The SQL query is: " + strSelect); // Echo For debugging
 //			System.out.println();
@@ -39,12 +50,12 @@ public class Storage {  // Save as "JdbcSelectTest.java"
 //				++rowCount;
 //			}
 //			System.out.println("Total number of records = " + rowCount);
-//
-//		} catch(SQLException ex) {
-//			ex.printStackTrace();
-//		}
-//		// Step 5: Close the resources - Done automatically by try-with-resources
-//	}
+
+		} catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+		// Step 5: Close the resources - Done automatically by try-with-resources
+	}
 	
 	private static Statement sqlStatement() {
 		try {
@@ -66,9 +77,6 @@ public class Storage {  // Save as "JdbcSelectTest.java"
 			ResultSet rset = stmt.executeQuery(strSelect);
 			CV cv = new CV();
 			cv.setId(rset.getInt("id"));
-			cv.setFirstName(rset.getString("firstName"));
-			cv.setLastName(rset.getString("lastName"));
-			cv.setAge(rset.getInt("age"));			
 			return cv;
 		}
 		catch(SQLException ex) {
@@ -84,11 +92,6 @@ public class Storage {  // Save as "JdbcSelectTest.java"
 			ResultSet rset = stmt.executeQuery(strSelect);
 			Job job = new Job();
 			job.setId(rset.getInt("id"));
-			job.setTitle(rset.getString("title"));
-			job.setSkills(rset.getString("skills"));
-			job.setEducation(rset.getString("education"));
-			job.setLocation(rset.getString("location"));
-			job.setExperience(rset.getString("experience"));
 			return job;
 		}
 		catch(SQLException ex) {
@@ -123,13 +126,13 @@ public class Storage {  // Save as "JdbcSelectTest.java"
 	public boolean saveCV(CV cv) {
 		try {
 			Statement stmt = sqlStatement();
-			int id = getLastId("cv");
-			String sqlInsert = "INSERT INTO cv VALUES('" + id + "', '" + cv.getFirstName() + "', '" 
-				+ cv.getLastName() + "', '" + cv.getAge() + "')";
+			int id = getLastId("cv") + 1;
+			String sqlInsert = "INSERT INTO cv VALUES('" + id +  "')";
 			stmt.executeUpdate(sqlInsert);
 			return true;
 		}
 		catch (SQLException ex){
+			ex.printStackTrace();
 			return false;
 		}
 	}
@@ -137,13 +140,13 @@ public class Storage {  // Save as "JdbcSelectTest.java"
 	public boolean saveJob(Job job) {
 		try {
 			Statement stmt = sqlStatement();
-			int id = getLastId("job");
-			String sqlInsert = "INSERT INTO job VALUES('" + id + "', '" + job.getTitle() + "', '" + job.getSkills()
-				+ "', '" + job.getEducation() + "', '" + job.getLocation() + "', '" + job.getExperience() + "')";
+			int id = getLastId("job") + 1;
+			String sqlInsert = "INSERT INTO job VALUES('" + id + "')";
 			stmt.executeUpdate(sqlInsert);
 			return true;
 		}
 		catch (SQLException ex){
+			ex.printStackTrace();
 			return false;
 		}
 	}
@@ -161,6 +164,7 @@ public class Storage {  // Save as "JdbcSelectTest.java"
 			return true;
 		}
 		catch (SQLException ex){
+			ex.printStackTrace();
 			return false;
 		}
 	}
@@ -170,9 +174,15 @@ public class Storage {  // Save as "JdbcSelectTest.java"
 			Statement stmt = sqlStatement();
 			String strSelect = "SELECT max(id) FROM " + tableName;
 			ResultSet rset = stmt.executeQuery(strSelect);
-			return rset.getInt("max(id)");
+			if (rset.next()) {
+				return rset.getInt("max(id)");
+			}
+			else {
+				return 0;
+			}
 		}
 		catch (SQLException ex){
+			ex.printStackTrace();
 			return 0;
 		}
 	}
