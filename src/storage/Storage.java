@@ -23,21 +23,9 @@ public class Storage {
 			
 			CV cv = new CV();
 			cv.setId(1);
-			cv.setName("Anand");
-			cv.setSkills("Java");
-			cv.setEducation("High School");
-			cv.setExperience("Entry Level");
-			cv.setLeadership("Leader");
-			cv.setAge(20);
 			
 			Job job = new Job();
 			job.setId(1);
-			job.setTitle("Manager");
-			job.setSkills("Java");
-			job.setEducation("High School");
-			job.setExperience("Entry Level");
-			job.setLeadership("Leader");
-			job.setLocation("Singapore");
 			
 			Storage st = new Storage();
 			st.saveCV(cv);
@@ -89,12 +77,6 @@ public class Storage {
 			ResultSet rset = stmt.executeQuery(strSelect);
 			CV cv = new CV();
 			cv.setId(rset.getInt("id"));
-			cv.setName(rset.getString("name"));
-			cv.setAge(rset.getInt("age"));		
-			cv.setSkills(rset.getString("skills"));
-			cv.setEducation(rset.getString("education"));
-			cv.setExperience(rset.getString("experience"));
-			cv.setLeadership(rset.getString("leadership"));
 			return cv;
 		}
 		catch(SQLException ex) {
@@ -110,12 +92,6 @@ public class Storage {
 			ResultSet rset = stmt.executeQuery(strSelect);
 			Job job = new Job();
 			job.setId(rset.getInt("id"));
-			job.setTitle(rset.getString("title"));
-			job.setSkills(rset.getString("skills"));
-			job.setEducation(rset.getString("education"));
-			job.setLocation(rset.getString("location"));
-			job.setExperience(rset.getString("experience"));
-			job.setLeadership(rset.getString("leadership"));
 			return job;
 		}
 		catch(SQLException ex) {
@@ -151,9 +127,7 @@ public class Storage {
 		try {
 			Statement stmt = sqlStatement();
 			int id = getLastId("cv") + 1;
-			String sqlInsert = "INSERT INTO cv VALUES('" + id + "', '" + cv.getName() + "', '" 
-				+ cv.getSkills() + "', '" + cv.getExperience() + "', '" + cv.getEducation() + "', '"
-				+ cv.getLeadership() + "', '" + cv.getAge() + "')";
+			String sqlInsert = "INSERT INTO cv VALUES('" + id +  "')";
 			stmt.executeUpdate(sqlInsert);
 			return true;
 		}
@@ -167,9 +141,7 @@ public class Storage {
 		try {
 			Statement stmt = sqlStatement();
 			int id = getLastId("job") + 1;
-			String sqlInsert = "INSERT INTO job VALUES('" + id + "', '" + job.getTitle() + "', '" + job.getSkills()
-				+ "', '" + job.getEducation() + "', '" + job.getLocation() + "', '" + job.getExperience() + "', '" 
-				+ job.getLeadership() + "')";
+			String sqlInsert = "INSERT INTO job VALUES('" + id + "')";
 			stmt.executeUpdate(sqlInsert);
 			return true;
 		}
