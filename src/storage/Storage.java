@@ -90,7 +90,11 @@ public class Storage {
 			CV cv = new CV();
 			cv.setId(rset.getInt("id"));
 			cv.setName(rset.getString("name"));
-			cv.setAge(rset.getInt("age"));			
+			cv.setAge(rset.getInt("age"));		
+			cv.setSkills(rset.getString("skills"));
+			cv.setEducation(rset.getString("education"));
+			cv.setExperience(rset.getString("experience"));
+			cv.setLeadership(rset.getString("leadership"));
 			return cv;
 		}
 		catch(SQLException ex) {
@@ -111,6 +115,7 @@ public class Storage {
 			job.setEducation(rset.getString("education"));
 			job.setLocation(rset.getString("location"));
 			job.setExperience(rset.getString("experience"));
+			job.setLeadership(rset.getString("leadership"));
 			return job;
 		}
 		catch(SQLException ex) {
