@@ -7,12 +7,14 @@ import java.util.Map;
 
 import common.CV;
 import common.Word;
+import storage.Storage;
 
 public class CVParser extends Parser {
 
 	private CV thisCv;
 	private List<String> fieldList; // needs to be defined here
 	private Map<String, List<Word>> cvContentMap = new HashMap<String, List<Word>>();
+	private Storage storage;
 
 	public CVParser(String fileName) {
 		super(fileName);
@@ -20,7 +22,7 @@ public class CVParser extends Parser {
 
 	public void setCVDetails() {
 		extractDataFromPdf();
-		setContent();		
+		setContent();
 
 		setFieldNames(); // CV Specific Fields
 		setFieldContent();
@@ -50,7 +52,13 @@ public class CVParser extends Parser {
 		thisCv.setLastName(content.get(0).getContent());
 		thisCv.setCvContentMap(cvContentMap);
 	}
-	public CV getCV(){
+
+	public CV getCV() {
 		return thisCv;
+	}
+
+	void saveCV() {
+		storage = new Storage();
+		storage.saveCV(thisCv);
 	}
 }
