@@ -12,6 +12,7 @@ public class Job {
 	String education;
 	String location;
 	String experience;
+	String leadership;
 	
 	private Map<String, List<Word>> contentMap;
 	
@@ -43,6 +44,10 @@ public class Job {
 		experience = ex;
 		return true;
 	}
+	public boolean setLeadership(String lead) {
+		leadership = lead;
+		return true;
+	}
 	
 	public void setContentMap(Map<String, List<Word>> contentMap) {
 		this.contentMap = contentMap;
@@ -66,7 +71,12 @@ public class Job {
 	public String getExperience() {
 		return experience;
 	}
+<<<<<<< HEAD
 	public Map<String, List<Word>> getContentMap() {
 		return this.contentMap;
+=======
+	public String getLeadership() {
+		return leadership;
+>>>>>>> master
 	}
 }
