@@ -63,11 +63,11 @@ public class Parser {
 		for (int i = 0; i < content.size(); i++) {
 			if (startField.equalsIgnoreCase("start")) {
 				if (content.get(i).getContent().equalsIgnoreCase(endField)) {
-					return content.subList(0, i);
+					return content.subList(1, i);
 				}
 			} else if (endField.equalsIgnoreCase("end")) {
 				if (content.get(i).getContent().equalsIgnoreCase(startField)) {
-					return content.subList(i, content.size() - 1);
+					return content.subList(i+1, content.size() - 1);
 				}
 
 			} else {
@@ -76,7 +76,7 @@ public class Parser {
 				if (content.get(i).getContent().equalsIgnoreCase(endField))
 					tempEndIndex = i;
 				if (tempStartIndex != -1 && tempEndIndex != -1) {
-					return content.subList(tempStartIndex, tempEndIndex);
+					return content.subList(tempStartIndex+1, tempEndIndex);
 				}
 			}
 		}

@@ -26,7 +26,7 @@ public class JobParser extends Parser {
 		setFieldContent();
 
 		thisJob = new Job();	
-		thisJob.setContentMap(contentMap);
+		thisJob.setJobContentMap(contentMap);
 	}
 
 	private void setFieldNames() {
