@@ -64,7 +64,6 @@ public class CVParser extends Parser {
 	}
 
 	public int saveCV() {
-		storage = new Storage();
-		return storage.saveCV(thisCv);
+		return Storage.saveCV(thisCv);
 	}
 }

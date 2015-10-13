@@ -17,7 +17,7 @@ public class Controller {
 		int CVId = p.saveCV();
 		System.out.println(CVId);
 		
-		JobParser jp = new JobParser("src/resources/JobExample4.pdf");
+		JobParser jp = new JobParser("src/resources/JobExample3.pdf");
 		jp.setJobDetails();
 		
 		Job j = jp.getJob();

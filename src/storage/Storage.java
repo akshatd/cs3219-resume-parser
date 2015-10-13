@@ -70,7 +70,7 @@ public class Storage {
 		}
 	}
 	
-	public CV getCV(int CVId) {
+	public static CV getCV(int CVId) {
 		try {
 			Statement stmt = sqlStatement();
 			String strSelect = "SELECT * FROM cv WHERE cv.id='" + CVId + "'";
@@ -87,7 +87,7 @@ public class Storage {
 		}
 	}
 	
-	public Job getJob(int jobId) {
+	public static Job getJob(int jobId) {
 		try {
 			Statement stmt = sqlStatement();
 			String strSelect = "SELECT * FROM job WHERE job.id='" + jobId + "'";
@@ -104,7 +104,7 @@ public class Storage {
 		}
 	}
 	
-	public ArrayList<Job> getAllJobs() {
+	public static ArrayList<Job> getAllJobs() {
 		try {
 			ArrayList<Job> jobsArray = new ArrayList<Job>(); 
 			Statement stmt = sqlStatement();
@@ -121,7 +121,7 @@ public class Storage {
 		}
 	}
 	
-	public ArrayList<CV> getAllCVs() {
+	public static ArrayList<CV> getAllCVs() {
 		try {
 			ArrayList<CV> CVsArray = new ArrayList<CV>(); 
 			Statement stmt = sqlStatement();
@@ -138,7 +138,7 @@ public class Storage {
 		}
 	}
 	
-	public ArrayList<Ranking> getRanking(int jobId) {
+	public static ArrayList<Ranking> getRanking(int jobId) {
 		try {
 			ArrayList<Ranking> rankList = new ArrayList<Ranking>();
 			Statement stmt = sqlStatement();
@@ -161,7 +161,7 @@ public class Storage {
 		}
 	}
 	
-	public int saveCV(CV cv) {
+	public static int saveCV(CV cv) {
 		try {
 			Statement stmt = sqlStatement();
 			int id = getLastId("cv") + 1;
@@ -177,7 +177,7 @@ public class Storage {
 		}
 	}
 	
-	public int saveJob(Job job) {
+	public static int saveJob(Job job) {
 		try {
 			Statement stmt = sqlStatement();
 			int id = getLastId("job") + 1;
@@ -193,7 +193,7 @@ public class Storage {
 		}
 	}
 	
-	public boolean saveRanking(ArrayList<Ranking> rankList) {
+	public static boolean saveRanking(ArrayList<Ranking> rankList) {
 		try {
 			Statement stmt = sqlStatement();
 			String sqlInsert = "";
@@ -211,7 +211,7 @@ public class Storage {
 		}
 	}
 	
-	private int getLastId(String tableName) {
+	private static int getLastId(String tableName) {
 		try {
 			Statement stmt = sqlStatement();
 			String strSelect = "SELECT max(id) FROM " + tableName;

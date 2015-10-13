@@ -14,7 +14,6 @@ public class JobParser extends Parser {
 	private Job thisJob;
 	private ArrayList<String> fieldList;
 	private Map<String, List<Word>> contentMap = new HashMap<String, List<Word>>();
-	private Storage storage;
 	
 	public JobParser(String fileName) {
 		super(fileName);
@@ -56,7 +55,6 @@ public class JobParser extends Parser {
 	}
 	
 	public int saveJob(){
-		storage = new Storage();
-		return storage.saveJob(thisJob);
+		return Storage.saveJob(thisJob);
 	}
 }

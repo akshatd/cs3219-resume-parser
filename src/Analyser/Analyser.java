@@ -22,7 +22,6 @@ public class Analyser
 	static Job job;
 	static CV cv;
 	
-	Storage str = new Storage();
 //	public static void main(String[] args) {
 //		try 
 //		{
@@ -178,8 +177,8 @@ public class Analyser
 //    }
     
     public void analyseCV(int CVId) {
-    	CV cv = str.getCV(CVId);
-    	ArrayList<Job> jobsArray = str.getAllJobs();
+    	CV cv = Storage.getCV(CVId);
+    	ArrayList<Job> jobsArray = Storage.getAllJobs();
     	
     	ArrayList<Ranking> rankArray = new ArrayList<Ranking>();
     	
@@ -192,12 +191,12 @@ public class Analyser
     		rank.setMatchPercentage(matchPercentage);
     		rankArray.add(rank);
     	}
-    	str.saveRanking(rankArray);
+    	Storage.saveRanking(rankArray);
     }
     
     public void analyseJob(int JobId) {
-    	Job job = str.getJob(JobId);
-    	ArrayList<CV> CVsArray = str.getAllCVs();
+    	Job job = Storage.getJob(JobId);
+    	ArrayList<CV> CVsArray = Storage.getAllCVs();
     	
     	ArrayList<Ranking> rankArray = new ArrayList<Ranking>();
     	
@@ -210,7 +209,7 @@ public class Analyser
     		rank.setMatchPercentage(matchPercentage);
     		rankArray.add(rank);
     	}
-    	str.saveRanking(rankArray);
+    	Storage.saveRanking(rankArray);
     }
     
     private static double calculateMatchPercentage(CV cv, Job job) {
