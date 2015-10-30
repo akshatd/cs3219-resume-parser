@@ -10,15 +10,25 @@
  	<!-- Latest compiled and minified CSS -->
  	<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
  	<meta name="viewport" content="width=device-width,initial-scale=1">
+  <script type="text/javascript">
+   function Recruiter()
+   {
+    window.location.href="recruiter.html";
+   }
+   function Applicant()
+   {
+    window.location.href="applicant.html";
+   }
+  </script>
  	<link rel="stylesheet" type="test/css" href="stylesheet.css">
  </head>
  <body>
 
   <div class="jumbotron">  
-    <div class="row">
-    	<div class="col-lg-6 col-md-6 col-xs-6 col-sm-6 pull-right">
-    		Resume
-    	</div>
+    <div class="row">     
+    	<div class="text-center">
+    		<h1>Resume Parser</h1>
+    	</div>   
     </div>
   </div>
 
@@ -27,10 +37,10 @@
   <div class="container">
   	<div class="row">
   		<div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
-            <button type ="button" class="btn btn-lg btn-warning pull-right btn-responsive">Recruiter</button>
+            <button type ="button" class="btn btn-xlarge btn-warning pull-right btn-responsive" onclick="Recruiter()">Recruiter</button>
         </div> 
         <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6"> 
-        	<button type="button" class="btn btn-lg btn-warning pull-left btn-responsive">Applicant</button>
+        	<button type="button" class="btn btn-xlarge btn-warning pull-left btn-responsive" onclick="Applicant()">Applicant</button>
         </div>  
     </div>
   </div>
