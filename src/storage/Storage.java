@@ -75,8 +75,7 @@ public class Storage {
 			Statement stmt = sqlStatement();
 			String strSelect = "SELECT * FROM cv WHERE cv.id='" + CVId + "'";
 			ResultSet rset = stmt.executeQuery(strSelect);
-			CV cv = new CV();
-			cv.setId(rset.getInt("id"));
+			CV cv = CV.fromString(rset.getString("contentMap"));
 			return cv;
 		}
 		catch(SQLException ex) {
@@ -90,8 +89,7 @@ public class Storage {
 			Statement stmt = sqlStatement();
 			String strSelect = "SELECT * FROM job WHERE job.id='" + jobId + "'";
 			ResultSet rset = stmt.executeQuery(strSelect);
-			Job job = new Job();
-			job.setId(rset.getInt("id"));
+			Job job = Job.fromString(rset.getString("contentMap"));
 			return job;
 		}
 		catch(SQLException ex) {
@@ -127,7 +125,8 @@ public class Storage {
 		try {
 			Statement stmt = sqlStatement();
 			int id = getLastId("cv") + 1;
-			String sqlInsert = "INSERT INTO cv VALUES('" + id +  "')";
+			String contentMap = cv.getCvContentMap().toString();
+			String sqlInsert = "INSERT INTO cv VALUES('" + id + "','" + contentMap + "')";
 			stmt.executeUpdate(sqlInsert);
 			return true;
 		}
@@ -141,7 +140,8 @@ public class Storage {
 		try {
 			Statement stmt = sqlStatement();
 			int id = getLastId("job") + 1;
-			String sqlInsert = "INSERT INTO job VALUES('" + id + "')";
+			String contentMap = job.getJobContentMap().toString();
+			String sqlInsert = "INSERT INTO job VALUES('" + id + "','" + contentMap + "')";
 			stmt.executeUpdate(sqlInsert);
 			return true;
 		}
