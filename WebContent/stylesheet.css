@@ -22,13 +22,53 @@
  	margin-bottom: 0px;
     background-position: 0% 25%;
     background-color: #660099;
-    height: 25%;
+    height: 27%;
     background-size: cover;
     background-repeat: no-repeat;
     color: white;
  } 
- input
- {
- 	
- }  
+
+
+
+
+
+/***********/
+/*input[type='file'] {
+    width:400px;
+    height:25px;
+    opacity:0
+}*/
+/*#val {
+    width: 400px;
+    height:25px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size:13px;
+    line-height: 25px;
+    text-indent: 10px;
+    pointer-events: none;
+}
+#button {
+    cursor: pointer;
+    display: block;
+    width: 90px;
+    background-color: purple;
+    height:25px;
+    color: white;
+    position: absolute;
+    right:0;
+    top: 0;
+    font-size: 11px;
+    line-height:25px;
+    text-align: center;
+    -webkit-transition: 500ms all;
+    -moz-transition: 500ms all;
+    transition: 500ms all;
+}
+
+#button:hover {
+    background-color: blue;
+}*/
+
 
