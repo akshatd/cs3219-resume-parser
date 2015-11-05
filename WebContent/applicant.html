@@ -1,22 +1,9 @@
 <html>
- <head>
- 	<title>
- 		Applicant page
- 	</title>
- 	<!-- Latest compiled JavaScript -->
- 	<script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
- 	<!-- jQuery library -->
- 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
- 	<!-- Latest compiled and minified CSS -->
- 	<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
- 	<meta name="viewport" content="width=device-width,initial-scale=1">
- 	<link rel="stylesheet" type="test/css" href="stylesheet.css">
- 	<script type="text/javascript" src="uploadFile.js"></script>
- </head>
+
  <body>
 
 	<div class="applicant">
-	<div class="jumbotron">  
+	<div class="jumbotron">
 	  <div class="row">
 		<div class="text-center">
 			<h1>Applicant</h1>
@@ -38,13 +25,53 @@
       <span class="fileinput-filename"></span><span class="fileinput-new">No file chosen</span>
     </div>
    </center> -->
-  
-	<center>
-		
-		<input type="file">
-		  <!-- <button class="btn-xlarge btn-success glyphicon glyphicon-upload"> Upload</button> -->
-	    
-	</center>
 
+	<center>
+
+		<h2>Would you like to attach your CV?</h2>
+		<!--<a href="" id="resume_link">Click here</a></div>-->
+		<button class="btn btn-xlarge btn-success glyphicon glyphicon-upload" href="" id="resume_link"> Upload</button></div>
+    <input type="file" id="resume" style="visibility: hidden">
+		 <p id="fileUploadInfo">Choose a pdf file</p>
+
+
+	<br/>
+	<br/>
+	<div class="table-responsive">
+		<table class="table">
+			<thead>
+			      <tr>
+			      	<!-- <th>#</th> -->
+			        <th>File Name</th>
+			        <th>Size (bytes)</th>
+			      </tr>
+           </thead>
+           <tbody>
+           	<tr>
+			      	<!-- <td id="num"></td> -->
+			        <td id="name"></td>
+			        <td id="size"></td>
+			  </tr>
+           </tbody>
+		</table>
+	</div>
+</center>
  </body>
+  <head>
+ 	<title>
+ 		Applicant page
+ 	</title>
+ 	<!-- jQuery library -->
+ 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+ 	<!-- Latest compiled JavaScript -->
+ 	<script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+ 	<!-- Latest compiled and minified CSS -->
+ 	<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+ 	<meta name="viewport" content="width=device-width,initial-scale=1">
+ 	<link rel="stylesheet" type="test/css" href="stylesheet.css">
+ 	<script type="text/javascript" src="uploadFile.js">
+
+ 	</script>
+ </head>
 </html>
