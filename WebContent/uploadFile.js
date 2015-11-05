@@ -8,13 +8,6 @@ $('#resume_link').click(function( e ) {
 $('#resume').on( 'change', function() {
    myfile= $( this ).val();
    console.log("myfile"+myfile);
-   var ext = myfile.split('.').pop();   //take the last elemnet of the array
-   if(ext!="pdf")
-   {
-       alert("Please ensure that your resume is a PDF format");
-   }
-   else
-   {
        //upload it
        var x = document.getElementById("resume");
        //var fileNo = "";
@@ -29,7 +22,7 @@ $('#resume').on( 'change', function() {
                 var file = x.files[i];
                 if ('name' in file)
                 {
-                    fileName = file.name ;
+                    fileName = "<a download='"+file.name+"'>"+file.name+"</a>" ;
                 }
                 if ('size' in file)
                 {
@@ -40,6 +33,6 @@ $('#resume').on( 'change', function() {
         //document.getElementById("num").innerHTML = fileNo;
         document.getElementById("name").innerHTML = fileName;
         document.getElementById("size").innerHTML = fileSize;
-    }
+
    }
 );
