@@ -1,6 +1,6 @@
-<html>
+<html ng-app="resume">
 
- <body>
+ <body ng-controller="control">
 
 	<div class="applicant">
 	<div class="jumbotron">
@@ -16,28 +16,27 @@
 	<br/>
 
 	<center>
-
-		<h2>Attach your CV?</h2>
+<!-- <form   ng-change="addRow()"> -->
+		<h2>Attach your CV</h2>
 		<button class="btn btn-xlarge btn-success glyphicon glyphicon-upload" href="" id="resume_link"> Upload</button></div>
-    <input type="file" id="resume" accept="application/pdf" style="visibility: hidden">
-		 <p id="fileUploadInfo">Choose a pdf file</p>
-
+    <input type="file" id="resume" accept="application/pdf" style="visibility: hidden" ng-model="name">
+<!-- </form> -->
+		<p id="fileUploadInfo">Choose a pdf file</p>
 
 	<br/>
-	<br/>
-	<div class="table-responsive">
-		<table class="table">
+	<div class="container">
+		<table class="table table-responsive">
 			<thead>
 			      <tr>
+              <th>#</th>
 			        <th>File Name</th>
-			        <th>Size (bytes)</th>
 			      </tr>
            </thead>
            <tbody>
-           	<tr>
-			        <td id="name"></td>
-			        <td id="size"></td>
-			  </tr>
+           	<tr ng-repeat="record in records">
+              <td>{{record.num}}</td>
+			        <td>{{record.name}}</td>
+			      </tr>
            </tbody>
 		</table>
 	</div>
@@ -54,6 +53,7 @@
 
  	<!-- Latest compiled and minified CSS -->
  	<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js"></script>
  	<meta name="viewport" content="width=device-width,initial-scale=1">
  	<link rel="stylesheet" type="test/css" href="stylesheet.css">
  	<script type="text/javascript" src="uploadFile.js">
