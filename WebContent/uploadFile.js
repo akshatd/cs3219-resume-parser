@@ -1,16 +1,5 @@
 var myfile="";
-var resume = angular.module("resume", []);
-resume.controller("control", function($scope)
-{
-$scope.records = [{ 'num':'1','name':'Rupali.pdf'},];
-
-$scope.addRow = function()
-{
-	$scope.records.push({ 'num':$scope.num,'name':$scope.name });
-	//$scope.name='';
-	//$scope.num = 0;
-};
-
+var counter = 0;
 $('#resume_link').click(function( e ) {
     e.preventDefault();
     $('#resume').trigger('click');
@@ -24,27 +13,27 @@ $('#resume').on( 'change', function() {
        var fileNo = "";
        var fileName = "";
        var fileSize = "";
+       counter++;
        if ('files' in x)
        {
 
             for (var i = 0; i < x.files.length; i++)
             {
-                fileNo += "<strong>" + (i+1) + "</strong>";
+                fileNo += counter;
                 var file = x.files[i];
                 if ('name' in file)
                 {
-                    //fileName = "<a href='"+file.name+"'>"+file.name+"</a>" ;
                     fileName = file.name;
                 }
             }
+            var newRow = jQuery('<tr><td>'+fileNo+'</td><td>'+fileName+'</td></tr>');
+            jQuery('tbody.list').append(newRow);
+
         }
-        
-        $scope.records.push({ 'num':fileNo,'name':fileName });
 
    }
 );
 
-});
 
 
 // $('#resume_link').click(function( e ) {

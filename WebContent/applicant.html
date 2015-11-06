@@ -1,6 +1,6 @@
-<html ng-app="resume">
+<html>
 
- <body ng-controller="control">
+ <body>
 
 	<div class="applicant">
 	<div class="jumbotron">
@@ -16,11 +16,11 @@
 	<br/>
 
 	<center>
-<!-- <form   ng-change="addRow()"> -->
+
 		<h2>Attach your CV</h2>
 		<button class="btn btn-xlarge btn-success glyphicon glyphicon-upload" href="" id="resume_link"> Upload</button></div>
-    <input type="file" id="resume" accept="application/pdf" style="visibility: hidden" ng-model="name">
-<!-- </form> -->
+    <input type="file" id="resume" accept="application/pdf" style="visibility: hidden">
+
 		<p id="fileUploadInfo">Choose a pdf file</p>
 
 	<br/>
@@ -32,11 +32,8 @@
 			        <th>File Name</th>
 			      </tr>
            </thead>
-           <tbody>
-           	<tr ng-repeat="record in records">
-              <td>{{record.num}}</td>
-			        <td>{{record.name}}</td>
-			      </tr>
+           <tbody class="list">
+
            </tbody>
 		</table>
 	</div>
