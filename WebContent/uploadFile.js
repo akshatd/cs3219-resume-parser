@@ -68,6 +68,12 @@ $('#resume_recruiter').on( 'change', function() {
    }
 );
 
+$('#resume_applicant').fileupload({	 
+    dataType: 'json',
+    done: function(e, data) {
+    	alert(JSON.stringify(data));
+    }
+});
 
 
 // $('#resume_link').click(function( e ) {
