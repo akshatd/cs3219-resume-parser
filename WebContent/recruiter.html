@@ -15,13 +15,14 @@
 	<br/>
 	<br/>
 
-
 	<center>
 
 		<h2>Attach Job Description</h2>
 		<button class="btn btn-xlarge btn-success glyphicon glyphicon-upload" href="" id="resume_link"> Upload</button>
-    <input type="file" id="resume" accept="application/pdf" multiple>
+    <input type="file" id="resume" accept="application/pdf" style="visibility: hidden">
+
 		 <p id="fileUploadInfo">Choose a pdf file</p>
+
      <br/>
      <h1>List of job descriptions</h1>
      <div class="container">
@@ -32,11 +33,8 @@
            <th>Job title</th>
          </tr>
        </thead>
-       <tbody>
-         <tr>
-           <td></td>
-           <td></td>
-         </tr>
+       <tbody class="list">
+
        </tbody>
      </table>
    </div>
