@@ -22,7 +22,7 @@ public class Word {
 	}
 
 	public void addAnnotation(String newAnnotation) {
-		annotations.add(newAnnotation);
+		annotations.add(newAnnotation.trim());
 	}
 
 	public String toString() {

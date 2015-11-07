@@ -34,17 +34,20 @@ public class CV {
 		String[] inputArray = inputString.split("\\{");
 		tempCV.setId(Integer.parseInt(inputArray[0].trim()));
 		
-		String[] tempFieldData = inputArray[1].split(" ], ");
+		String[] tempFieldData = inputArray[1].split("]], ");
+		for(int x=0; x<tempFieldData.length; x++){
+			tempFieldData[x] = tempFieldData[x].concat("]");
+		}
 		Map<String, List<Word>> tempCVContentMap = new HashMap<String, List<Word>>();
 		
 		for(int i=0; i< tempFieldData.length; i++){
 			String[] tempHashValue = tempFieldData[i].split("=\\[");			
 			String tempKey = tempHashValue[0].trim();
-			String[] tempValue = tempHashValue[1].split(",");			
+			String[] tempValue = tempHashValue[1].split(", ");			
 			List<Word> tempValueList = new ArrayList<Word>();
 			
 			for(int j=0; j<tempValue.length;j++){
-				Word tempWord = Word.fromString(tempValue[j].trim().split(" ")[0]);
+				Word tempWord = Word.fromString(tempValue[j].split("]}]")[0]);
 				tempValueList.add(tempWord);
 			}
 			tempCVContentMap.put(tempKey, tempValueList);
