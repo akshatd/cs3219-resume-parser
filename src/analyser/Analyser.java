@@ -220,16 +220,36 @@ public class Analyser
     	double matches = 0;
     	double numberOfKeywords = 0;
     	
+//    	for(Map.Entry<String, List<Word>> cvEntry : cvContent.entrySet()) {
+//			List<Word> cvWordList = cvEntry.getValue();
+//			for(int z = 0; z < cvWordList.size(); z++) {
+//				outer: for(Map.Entry<String, List<Word>> entry : jobContent.entrySet()) {
+//					numberOfKeywords = 0;
+//		    		String key = entry.getKey();
+//		    		List<Word> wordList = entry.getValue();
+//		    		System.out.println(wordList);
+//		    		for (int y = 0; y < wordList.size(); y++) {
+//		    			if(cvWordList.get(z).toString().equalsIgnoreCase(wordList.get(y).toString())){
+//    						matches += 1.0; 
+//    						break outer;
+//    					}
+//		    		}
+//		    		numberOfKeywords += wordList.size();
+//				}
+//			}
+//    	}
+    	
     	for(Map.Entry<String, List<Word>> entry : jobContent.entrySet()) {
     		String key = entry.getKey();
     		List<Word> wordList = entry.getValue();
     		System.out.println(wordList);
     		for (int y = 0; y < wordList.size(); y++) {
-    			for(Map.Entry<String, List<Word>> cvEntry : cvContent.entrySet()) {
+    			outer: for(Map.Entry<String, List<Word>> cvEntry : cvContent.entrySet()) {
     				List<Word> cvWordList = cvEntry.getValue();
     				for(int z = 0; z < cvWordList.size(); z++) {
     					if(cvWordList.get(z).toString().equalsIgnoreCase(wordList.get(y).toString())){
     						matches += 1.0; 
+    						break outer;
     					}
     				}
     			}
