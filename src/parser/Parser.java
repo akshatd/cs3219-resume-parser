@@ -47,7 +47,9 @@ public class Parser {
 				fileContent[i] = fileContent[i].replaceAll("[-+.^:,()<>&]", "");
 
 				if (StringUtils.isAlpha(fileContent[i])) {
-					Word tempWord = new Word((fileContent[i]), tagger.tagString(fileContent[i]));
+					Word tempWord = new Word(fileContent[i]);
+					String tag = tagger.tagString(fileContent[i]).split("_")[1];
+					tempWord.addAnnotation(tag);
 					if (isKeyword(tempWord)) {
 						content.add(tempWord);
 					}
@@ -84,7 +86,8 @@ public class Parser {
 	}
 
 	protected boolean isKeyword(Word word) {
-		if (isNoun(word.getPOS()) || isVerb(word.getPOS())) {
+		String POS = word.getAnnotations().get(0);
+		if (isNoun(POS) || isVerb(POS)) {
 			return true;
 		} else
 			return false;

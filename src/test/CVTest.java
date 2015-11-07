@@ -12,7 +12,7 @@ public class CVTest {
 		
 		CV c = p.getCV();
 		CV d = CV.fromString(c.toString());
-		System.out.println(d.toString());
+		System.out.println(d);
 	}
 
 }

@@ -1,5 +1,6 @@
 var myfile="";
 var counter = 0;
+var resumeArray = ["hi"];
 $('#resume_link1').click(function( e ) {
     e.preventDefault();
     $('#resume_applicant').trigger('click');
@@ -32,6 +33,8 @@ $('#resume_applicant').on( 'change', function() {
                 }
             }
             var newRow = jQuery('<tr><td>'+fileNo+'</td><td>'+fileName+'</td></tr>');
+            resumeArray.push(fileName);
+            console.log(resumeArray);
             jQuery('tbody.list').append(newRow);
 
         }
@@ -60,7 +63,7 @@ $('#resume_recruiter').on( 'change', function() {
                     fileName = file.name;
                 }
             }
-            var newRow = jQuery('<tr><td>'+fileNo+'</td><td><a>'+fileName+'</a></td></tr>');
+            var newRow = jQuery('<tr><td>'+fileNo+'</td><td><a href="match_percentage.html?fileNo='+fileNo+'&jobName='+fileName+'&cvName='+resumeArray[0]+'" target="_blank">'+fileName+'</a></td></tr>');
             jQuery('tbody.list').append(newRow);
 
         }
