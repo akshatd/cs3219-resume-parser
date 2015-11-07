@@ -60,7 +60,7 @@ $('#resume_recruiter').on( 'change', function() {
                     fileName = file.name;
                 }
             }
-            var newRow = jQuery('<tr><td>'+fileNo+'</td><td><a href="match_percentage.html">'+fileName+'</a></td></tr>');
+            var newRow = jQuery('<tr><td>'+fileNo+'</td><td><a href="match_percentage.html?fileNo='+fileNo+'&jobName='+fileName+'" target="_blank">'+fileName+'</a></td></tr>');
             jQuery('tbody.list').append(newRow);
 
         }
