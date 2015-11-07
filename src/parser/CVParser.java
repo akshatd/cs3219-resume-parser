@@ -14,7 +14,6 @@ public class CVParser extends Parser {
 	private CV thisCv;
 	private List<String> fieldList; // needs to be defined here
 	private Map<String, List<Word>> cvContentMap = new HashMap<String, List<Word>>();
-	private Storage storage;
 
 	public CVParser(String fileName) {
 		super(fileName);
