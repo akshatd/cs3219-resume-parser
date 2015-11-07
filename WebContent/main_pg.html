@@ -13,22 +13,26 @@
   <script type="text/javascript">
    function Recruiter()
    {
-    window.location.href="recruiter.html";
+    // window.location.href="recruiter.html";
+    // window.target="_blank";
+    window.open('recruiter.html','_blank');
    }
    function Applicant()
    {
-    window.location.href="applicant.html";
+    // window.location.href="applicant.html";
+    // window.target="_blank";
+    window.open('applicant.html','_blank');
    }
   </script>
  	<link rel="stylesheet" type="test/css" href="stylesheet.css">
  </head>
  <body>
 
-  <div class="jumbotron">  
-    <div class="row">     
+  <div class="jumbotron">
+    <div class="row">
     	<div class="text-center">
     		<h1>Resume Parser</h1>
-    	</div>   
+    	</div>
     </div>
   </div>
 
@@ -38,14 +42,14 @@
   	<div class="row">
   		<div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
             <button type ="button" class="btn btn-xlarge btn-warning pull-right btn-responsive" onclick="Recruiter()">Recruiter</button>
-        </div> 
-        <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6"> 
+        </div>
+        <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
         	<button type="button" class="btn btn-xlarge btn-warning pull-left btn-responsive" onclick="Applicant()">Applicant</button>
-        </div>  
+        </div>
     </div>
   </div>
 
-  
+
 
 
  </body>
