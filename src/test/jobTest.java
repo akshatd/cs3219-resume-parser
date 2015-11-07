@@ -12,6 +12,6 @@ public class jobTest {
 		
 		Job j = jp.getJob();
 		Job k = Job.fromString(j.toString());
-		System.out.println(k.toString());
+		System.out.println(k);
 	}
 }
