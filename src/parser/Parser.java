@@ -26,6 +26,7 @@ public class Parser {
 	private final static String gazetteLoc = "src" + File.separator + "gazettes" + File.separator;
 	private final static String[] FIELDNAMES = { "accomplishments", "awards", "credibility", "education",
 			"extracurricular", "misc", "skills", "work" };
+	protected final static String PROFILE = "profile";
 	private final static Set<String> FIELDSET = new HashSet<String>(Arrays.asList(FIELDNAMES));
 
 	Parser(String fileName) {
@@ -148,7 +149,7 @@ public class Parser {
 	protected Map<String, List<Word>> setContentMap() {
 		Map<String, List<Word>> contentMap = new HashMap<String, List<Word>>();
 
-		String currentField = "profile";
+		String currentField = PROFILE;
 		contentMap.put(currentField, new ArrayList<Word>());
 		
 		
