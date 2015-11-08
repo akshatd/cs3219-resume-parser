@@ -21,7 +21,15 @@ public class MultipartRequestHandler {
         
         String appPath = request.getServletContext().getRealPath("");
         // constructs path of the directory to save uploaded file
-        String savePath = appPath + File.separator + "uploaded_cv";
+        String savePath = "";
+        
+        if (request.getParameter("uploader").equals("applicant")) {
+        	savePath = appPath + File.separator + "uploaded_cv";
+        }
+        else {
+        	savePath = appPath + File.separator + "uploaded_job";
+        }
+        
          
         // creates the save directory if it does not exists
         File fileSaveDir = new File(savePath);
@@ -46,7 +54,16 @@ public class MultipartRequestHandler {
  
                 String fileName = getFilename(part);
                 System.out.println(fileName);
-                part.write(savePath + File.separator + fileName);
+                
+                String filePath = savePath + File.separator + fileName;
+                part.write(filePath);
+                
+                if (request.getParameter("uploader").equals("applicant")) {
+                	Controller.uploadCV(filePath);
+                }
+                else {
+                	Controller.uploadJob(filePath);
+                }
                 
                 // 3.3 Add created FileMeta object to List<FileMeta> files
                 files.add(temp);

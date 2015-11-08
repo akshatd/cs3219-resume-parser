@@ -88,7 +88,7 @@ public class Parser {
 	}
 
 	private void POSTagger() {
-		MaxentTagger tagger = new MaxentTagger("src/taggers/english-bidirectional-distsim.tagger");
+		MaxentTagger tagger = new MaxentTagger("english-bidirectional-distsim.tagger");
 
 		for (int i = 0; i < fileContent.length; i++) {
 			if (StringUtils.isNotBlank(fileContent[i])) {
