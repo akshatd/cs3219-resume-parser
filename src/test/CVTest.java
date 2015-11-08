@@ -11,6 +11,7 @@ public class CVTest {
 		p.setCVDetails();
 		
 		CV c = p.getCV();
+		System.out.println(c);
 		CV d = CV.fromString(c.toString());
 		System.out.println(d);
 	}
