@@ -19,6 +19,7 @@ public class JobParser extends Parser {
 
 	public void setJobDetails() {
 		extractDataFromPdf();
+		setAnnotations();
 		jobContentMap = setContentMap();
 		
 		thisJob = new Job();	

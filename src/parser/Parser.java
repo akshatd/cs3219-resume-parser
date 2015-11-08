@@ -22,7 +22,7 @@ public class Parser {
 	private String fileName;
 	private String[] fileContent;
 	protected List<Word> content;
-	List<Set<String>> gazette;
+	Map<String, Set<String>> gazette;
 	private final static String gazetteLoc = "src" + File.separator + "gazettes" + File.separator;
 	private final static String[] FIELDNAMES = { "accomplishments", "awards", "credibility", "education",
 			"extracurricular", "misc", "skills", "work" };
@@ -31,14 +31,14 @@ public class Parser {
 	Parser(String fileName) {
 		this.fileName = fileName;
 		content = new ArrayList<Word>();
-		gazette = new ArrayList<Set<String>>();
+		gazette = new HashMap<String, Set<String>>();
 		setUpGazetee();
 	}
 
 	private void setUpGazetee() {
 		for (int i = 0; i < FIELDNAMES.length; i++) {
 			Set<String> fileContent = getFileContent(gazetteLoc + FIELDNAMES[i] + ".txt");
-			gazette.add(fileContent);
+			gazette.put(FIELDNAMES[i].toLowerCase(), fileContent);
 		}
 	}
 
@@ -53,7 +53,7 @@ public class Parser {
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 
 			while ((line = bufferedReader.readLine()) != null) {
-				fileContent.add(line);
+				fileContent.add(line.toLowerCase());
 			}
 
 			// Always close files.
@@ -138,7 +138,7 @@ public class Parser {
 		for (int i = 0; i < content.size(); i++) {
 			Word tempWord = content.get(i);
 			for (int j = 0; j < gazette.size(); j++) {
-				if (gazette.get(j).contains(tempWord.getContent())) {
+				if (gazette.get(FIELDNAMES[j]).contains(tempWord.getContent().toLowerCase())) {
 					tempWord.addAnnotation(FIELDNAMES[j]);
 				}
 			}
