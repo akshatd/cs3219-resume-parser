@@ -17,4 +17,8 @@
     <welcome-file>main_pg.htm</welcome-file>
     <welcome-file>main_pg.jsp</welcome-file>
   </welcome-file-list>
+ <!--  <servlet>  
+        <servlet-name>applicant</servlet-name> 
+        <jsp-file>services.jsp</jsp-file>
+    </servlet> --> 
 </web-app>
