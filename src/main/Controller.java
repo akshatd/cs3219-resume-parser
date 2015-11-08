@@ -30,4 +30,31 @@ public class Controller {
 		anal.analyseCV(CVId);
 		
 	}
+	
+	public static void uploadCV(String filePath) {
+		CVParser p = new CVParser(filePath);
+		p.setCVDetails();
+		
+		CV c = p.getCV();
+		CV d = CV.fromString(c.toString());
+		System.out.println(d.toString());
+		int CVId = p.saveCV();
+		System.out.println(CVId);
+		
+		Analyser anal = new Analyser();
+		anal.analyseCV(CVId);
+	}
+	public static void uploadJob(String filePath) {
+		JobParser jp = new JobParser(filePath);
+		jp.setJobDetails();
+		
+		Job j = jp.getJob();
+		Job k = Job.fromString(j.toString());
+		System.out.println(k.toString());
+		int jobId = jp.saveJob();
+		System.out.println(jobId);
+		
+		Analyser anal = new Analyser();
+		anal.analyseJob(jobId);
+	}
 }

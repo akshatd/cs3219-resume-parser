@@ -36,4 +36,10 @@ $('#resume_recruiter').on( 'change', function() {
    }
 );
 
-console.log(resumeArray[0]);
+$('#resume_recruiter').fileupload({	 
+    dataType: 'json',
+    formData: {uploader: 'recruiter'},
+    done: function(e, data) {
+    	alert(JSON.stringify(data));
+    }
+});

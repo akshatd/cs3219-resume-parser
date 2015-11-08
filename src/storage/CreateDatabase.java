@@ -53,7 +53,7 @@ public class CreateDatabase {
 			strCreate = "CREATE TABLE cv_job " +
 					"(cvid INTEGER not NULL, " +
 					" jobid INTEGER not NULL, " +
-					" matchpercentage DECIMAL not NULL, " +
+					" matchpercentage DOUBLE not NULL, " +
 					" PRIMARY KEY ( cvid, jobid ), " +
 					" FOREIGN KEY (cvid) REFERENCES cv(id), " +
 					" FOREIGN KEY (jobid) REFERENCES job(id))"; 

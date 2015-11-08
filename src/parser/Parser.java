@@ -38,22 +38,37 @@ public class Parser {
 	}
 
 	protected void setContent() {
+		POSTagger();
+		gazetter();
+	}
 
-		MaxentTagger tagger = new MaxentTagger("src/taggers/english-bidirectional-distsim.tagger");
+	private void POSTagger(){
+		MaxentTagger tagger = new MaxentTagger("english-bidirectional-distsim.tagger");
 
 		for (int i = 0; i < fileContent.length; i++) {
 			if (StringUtils.isNotBlank(fileContent[i])) {
-				fileContent[i] = fileContent[i].replaceAll("[0-9]", "");
+//				fileContent[i] = fileContent[i].replaceAll("[0-9]", "");
 				fileContent[i] = fileContent[i].replaceAll("[-+.^:,()<>&]", "");
 
-				if (StringUtils.isAlpha(fileContent[i])) {
-					Word tempWord = new Word((fileContent[i]), tagger.tagString(fileContent[i]));
+				if (StringUtils.isNumeric(fileContent[i])) {
+					Word tempWord = new Word(fileContent[i]);
+					tempWord.addAnnotation("ANK"); //number
+					content.add(tempWord);
+					
+				}else if (StringUtils.isAlpha(fileContent[i])) {
+					Word tempWord = new Word(fileContent[i]);
+					String tag = tagger.tagString(fileContent[i]).split("_")[1];
+					tempWord.addAnnotation(tag);
 					if (isKeyword(tempWord)) {
 						content.add(tempWord);
 					}
 				}
 			}
 		}
+	}
+	
+	private void gazetter(){
+		
 	}
 
 	protected List<Word> getFieldContent(String startField, String endField) {
@@ -82,9 +97,10 @@ public class Parser {
 		}
 		return content;
 	}
-
+	
 	protected boolean isKeyword(Word word) {
-		if (isNoun(word.getPOS()) || isVerb(word.getPOS())) {
+		String POS = word.getAnnotations().get(0);
+		if (isNoun(POS) || isVerb(POS)) {
 			return true;
 		} else
 			return false;
