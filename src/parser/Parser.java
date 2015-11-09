@@ -21,8 +21,8 @@ public class Parser {
 
 	private String fileName;
 	private String[] fileContent;
-	protected List<Word> content;
-	Map<String, Set<String>> gazette;
+	private List<Word> content;
+	private Map<String, Set<String>> gazette;
 	private static String gazetteLoc = Parser.class.getProtectionDomain().getCodeSource().getLocation().getPath() + 
 				File.separator + "../.." + File.separator + "gazettes" + File.separator;
 	private final static String[] FIELDNAMES = { "accomplishments", "awards", "credibility", "education",
