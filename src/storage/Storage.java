@@ -142,7 +142,8 @@ public class Storage {
 		try {
 			ArrayList<Ranking> rankList = new ArrayList<Ranking>();
 			Statement stmt = sqlStatement();
-			String strSelect = "SELECT * FROM cv_job WHERE cv_job.jobid='" + jobId + "'";
+			String strSelect = "SELECT * FROM cv_job WHERE cv_job.jobid='" + jobId + 
+					"' ORDER BY matchpercentage DESC";
 			ResultSet rset = stmt.executeQuery(strSelect);
 			while(rset.next()) {   // Move the cursor to the next row
 				CV cv = getCV(rset.getInt("cvid"));

@@ -2,9 +2,13 @@ package main;
 
 import common.CV;
 import common.Job;
+import common.Ranking;
 import parser.CVParser;
 import parser.JobParser;
+import storage.Storage;
 import analyser.Analyser;
+
+import java.util.ArrayList;
 
 public class Controller {
 	public static void main(String[] args) {
@@ -26,8 +30,7 @@ public class Controller {
 		int jobId = jp.saveJob();
 		System.out.println(jobId);
 		
-		Analyser anal = new Analyser();
-		anal.analyseCV(CVId);
+		Analyser.analyseCV(CVId);
 		
 	}
 	
@@ -41,8 +44,7 @@ public class Controller {
 		int CVId = p.saveCV();
 		System.out.println(CVId);
 		
-		Analyser anal = new Analyser();
-		anal.analyseCV(CVId);
+		Analyser.analyseCV(CVId);
 	}
 	public static void uploadJob(String filePath) {
 		JobParser jp = new JobParser(filePath);
@@ -54,7 +56,27 @@ public class Controller {
 		int jobId = jp.saveJob();
 		System.out.println(jobId);
 		
-		Analyser anal = new Analyser();
-		anal.analyseJob(jobId);
+		Analyser.analyseJob(jobId);
+	}
+	public static ArrayList<Ranking> getRanking(int jobId) {
+		try {
+			ArrayList<Ranking> rankList = Storage.getRanking(jobId);
+			return rankList;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static ArrayList<Job> getAllJobs() {
+		try {
+			ArrayList<Job> jobList = Storage.getAllJobs();
+			return jobList;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

@@ -176,7 +176,7 @@ public class Analyser
 //    	return matchedWords/totalWords*100;	
 //    }
     
-    public void analyseCV(int CVId) {
+    public static void analyseCV(int CVId) {
     	CV cv = Storage.getCV(CVId);
     	ArrayList<Job> jobsArray = Storage.getAllJobs();
     	
@@ -194,7 +194,7 @@ public class Analyser
     	Storage.saveRanking(rankArray);
     }
     
-    public void analyseJob(int JobId) {
+    public static void analyseJob(int JobId) {
     	Job job = Storage.getJob(JobId);
     	ArrayList<CV> CVsArray = Storage.getAllCVs();
     	
