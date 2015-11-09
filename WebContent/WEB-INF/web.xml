@@ -8,6 +8,14 @@
     <servlet-name>upload</servlet-name>            
     <servlet-class>main.FileUpload</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>rank</servlet-name>            
+    <servlet-class>main.RankRequestHandler</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>jobs</servlet-name>            
+    <servlet-class>main.JobsRequestHandler</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>Wololo</servlet-name>
   	<url-pattern>/lel</url-pattern>
@@ -15,6 +23,14 @@
   <servlet-mapping>
     <servlet-name>upload</servlet-name>
     <url-pattern>/upload</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>rank</servlet-name>
+    <url-pattern>/rank</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>jobs</servlet-name>
+    <url-pattern>/jobs</url-pattern>
   </servlet-mapping>
   <display-name>ResumeParser</display-name>
   <welcome-file-list>

@@ -1,9 +1,9 @@
 package common;
 
 public class Ranking {
-	CV cv;
-	int jobId;
-	double matchPercentage;
+	private CV cv;
+	private int jobId;
+	private double matchPercentage;
 	
 	public boolean setCV(CV c) {
 		cv = c;

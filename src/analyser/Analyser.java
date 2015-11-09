@@ -12,15 +12,15 @@ import storage.Storage;
 
 public class Analyser 
 {
-	static int matchedWords = 0; 
-	static int totalWords;
-	static double percentage;
-	static String jobKeyWords;
-	static String cvKeyWords;
-	static String [] jobKeyWordsArray;
-	static String [] cvKeyWordsArray;
-	static Job job;
-	static CV cv;
+	private static int matchedWords = 0; 
+	private static int totalWords;
+	private static double percentage;
+	private static String jobKeyWords;
+	private static String cvKeyWords;
+	private static String [] jobKeyWordsArray;
+	private static String [] cvKeyWordsArray;
+	private static Job job;
+	private static CV cv;
 	
 //	public static void main(String[] args) {
 //		try 
@@ -176,7 +176,7 @@ public class Analyser
 //    	return matchedWords/totalWords*100;	
 //    }
     
-    public void analyseCV(int CVId) {
+    public static void analyseCV(int CVId) {
     	CV cv = Storage.getCV(CVId);
     	ArrayList<Job> jobsArray = Storage.getAllJobs();
     	
@@ -194,7 +194,7 @@ public class Analyser
     	Storage.saveRanking(rankArray);
     }
     
-    public void analyseJob(int JobId) {
+    public static void analyseJob(int JobId) {
     	Job job = Storage.getJob(JobId);
     	ArrayList<CV> CVsArray = Storage.getAllCVs();
     	
