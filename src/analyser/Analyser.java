@@ -12,15 +12,15 @@ import storage.Storage;
 
 public class Analyser 
 {
-	static int matchedWords = 0; 
-	static int totalWords;
-	static double percentage;
-	static String jobKeyWords;
-	static String cvKeyWords;
-	static String [] jobKeyWordsArray;
-	static String [] cvKeyWordsArray;
-	static Job job;
-	static CV cv;
+	private static int matchedWords = 0; 
+	private static int totalWords;
+	private static double percentage;
+	private static String jobKeyWords;
+	private static String cvKeyWords;
+	private static String [] jobKeyWordsArray;
+	private static String [] cvKeyWordsArray;
+	private static Job job;
+	private static CV cv;
 	
 //	public static void main(String[] args) {
 //		try 

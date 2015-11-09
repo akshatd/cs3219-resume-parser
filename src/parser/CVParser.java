@@ -35,14 +35,18 @@ public class CVParser extends Parser {
 
 	private List<Word> getName(List<Word> profile) {
 		List<Word> fullName = new ArrayList<Word>();
-
-		for (int i = 0; i < profile.size(); i++) {
-			if (profile.get(i).getAnnotations().get(0).equalsIgnoreCase("NN")) {
-				fullName.add(profile.get(i));
-			} else {
-				break;
-			}
+		
+		for (int i=0; i<2; i++) {
+			fullName.add(profile.get(i));
 		}
+		
+//		for (int i = 0; i < profile.size(); i++) {
+//			if (profile.get(i).getAnnotations().get(0).equalsIgnoreCase("NN")) {
+//				fullName.add(profile.get(i));
+//			} else {
+//				break;
+//			}
+//		}
 		removeAttributeFromProfile(profile, fullName);
 		return fullName;
 	}
