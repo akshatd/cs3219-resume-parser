@@ -23,7 +23,7 @@ public class Parser {
 	private String[] fileContent;
 	protected List<Word> content;
 	Map<String, Set<String>> gazette;
-	private final static String gazetteLoc = Parser.class.getProtectionDomain().getCodeSource().getLocation().getPath() + 
+	private static String gazetteLoc = Parser.class.getProtectionDomain().getCodeSource().getLocation().getPath() + 
 				File.separator + "../.." + File.separator + "gazettes" + File.separator;
 	private final static String[] FIELDNAMES = { "accomplishments", "awards", "credibility", "education",
 			"extracurricular", "misc", "skills", "work" };
@@ -42,6 +42,12 @@ public class Parser {
 			Set<String> fileContent = getFileContent(gazetteLoc + FIELDNAMES[i] + ".txt");
 			gazette.put(FIELDNAMES[i].toLowerCase(), fileContent);
 		}
+	}
+	
+	
+	//ONLY FOR UNIT TEST
+	public static void setGazetteFilePath(String gazettePath) {
+		gazetteLoc = gazettePath;
 	}
 
 	private Set<String> getFileContent(String fileName) {
