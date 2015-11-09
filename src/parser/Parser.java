@@ -23,7 +23,8 @@ public class Parser {
 	private String[] fileContent;
 	protected List<Word> content;
 	Map<String, Set<String>> gazette;
-	private final static String gazetteLoc = "src" + File.separator + "gazettes" + File.separator;
+	private final static String gazetteLoc = Parser.class.getProtectionDomain().getCodeSource().getLocation().getPath() + 
+				File.separator + "../.." + File.separator + "gazettes" + File.separator;
 	private final static String[] FIELDNAMES = { "accomplishments", "awards", "credibility", "education",
 			"extracurricular", "misc", "skills", "work" };
 	protected final static String PROFILE = "profile";
@@ -60,6 +61,8 @@ public class Parser {
 			// Always close files.
 			bufferedReader.close();
 		} catch (FileNotFoundException ex) {
+			String curDir = System.getProperty("user.dir");
+			System.out.println(curDir);
 			System.out.println("Unable to open file '" + fileName + "'");
 		} catch (IOException ex) {
 			System.out.println("Error reading file '" + fileName + "'");
