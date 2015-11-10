@@ -9,53 +9,6 @@ import common.Ranking;
 
 // JDK 7 and above
 public class Storage {
-	public static void main(String[] args) {
-		try 
-		{
-			// Step 1: Allocate a database "Connection" object
-			 Connection conn = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/resumeparser", "root", "root"); // MySQL
-
-			// Step 2: Allocate a "Statement" object in the Connection
-			 Statement stmt = conn.createStatement();
-			// Step 3: Execute a SQL SELECT query, the query result
-			//  is returned in a "ResultSet" object.
-			
-			CV cv = new CV();
-			cv.setId(1);
-			
-			Job job = new Job();
-			job.setId(1);
-			
-			Storage st = new Storage();
-			st.saveCV(cv);
-			st.saveJob(job);
-			
-			System.out.println("reached here");
-//			String strSelect = "select * from stories";
-//			System.out.println("The SQL query is: " + strSelect); // Echo For debugging
-//			System.out.println();
-//
-//			ResultSet rset = stmt.executeQuery(strSelect);
-//
-//			// Step 4: Process the ResultSet by scrolling the cursor forward via next().
-//			//  For each row, retrieve the contents of the cells with getXxx(columnName).
-//			System.out.println("The records selected are:");
-//			int rowCount = 0;
-//			while(rset.next()) {   // Move the cursor to the next row
-//				String title = rset.getString("title");
-//				double maxPost = rset.getDouble("maxPost");
-//				int    id   = rset.getInt("id");
-//				System.out.println(title + ", " + maxPost + ", " + id);
-//				++rowCount;
-//			}
-//			System.out.println("Total number of records = " + rowCount);
-
-		} catch(SQLException ex) {
-			ex.printStackTrace();
-		}
-		// Step 5: Close the resources - Done automatically by try-with-resources
-	}
 	
 	private static Statement sqlStatement() {
 		try {
