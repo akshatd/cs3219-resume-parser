@@ -7,24 +7,6 @@ paramResume = paramResume.replace(/%20/g, " ");
 var jobName = location.search.split('jobName=')[1];
 jobName = jobName.replace(/%20/g, " ");
 
-//var newRow = jQuery('<tr id="paramResume'+counter+'"><td>'+paramID+'</td><td>lala</td><td>'+
-//		paramResume+'</td><td id="percentage'+counter+'">100%</td></tr>');
-//jQuery('tbody.list').append(newRow);
-//counter++;
-//--------for testing to see if rows hide/show properly, can delete this later---------------------------
-//var newRow = jQuery('<tr id="paramResume'+counter+'"><td>'+paramID+'</td><td>lala</td><td>'+
-//		paramResume+'</td><td id="percentage'+counter+'">88%</td></tr>');
-//jQuery('tbody.list').append(newRow);
-//counter++;
-//var newRow = jQuery('<tr id="paramResume'+counter+'"><td>'+paramID+'</td><td>lala</td><td>'+
-//		paramResume+'</td><td id="percentage'+counter+'">56%</td></tr>');
-//jQuery('tbody.list').append(newRow);
-//counter++;
-//var newRow = jQuery('<tr id="paramResume'+counter+'"><td>'+paramID+'</td><td>lala</td><td>'+
-//		paramResume+'</td><td id="percentage'+counter+'">23%</td></tr>');
-//jQuery('tbody.list').append(newRow);
-//counter++;
-//-------------------------------------------------------------------------------------------------------
 $(function(){
 	
 	$('#jobTitle').html(jobName);
@@ -59,7 +41,6 @@ $(function(){
 			jobId: parseInt(paramResume)
 		},
 		success: function(data) {
-			alert(JSON.stringify(data));
 			for (var x = 0; x < data.length; x++) {
 				counter++;
 				var name = (data[x].cv.cvContentMap.fullname[0] &&

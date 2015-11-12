@@ -28,7 +28,7 @@ $('#resume_recruiter').on( 'change', function() {
                     fileName = file.name;
                 }
             }
-            var newRow = jQuery('<tr><td>'+fileNo+'</td><td><a href="match_percentage.html?fileNo='+fileNo+'&jobName='+fileName+'" target="_blank">'+fileName+'</a></td></tr>');
+            var newRow = jQuery('<tr><td>'+fileNo+'</td><td>'+fileName+'</td></tr>');
             jQuery('tbody.list').append(newRow);
 
         }
@@ -40,6 +40,5 @@ $('#resume_recruiter').fileupload({
     dataType: 'json',
     formData: {uploader: 'recruiter'},
     done: function(e, data) {
-    	alert(JSON.stringify(data));
     }
 });

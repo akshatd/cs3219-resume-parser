@@ -39,6 +39,5 @@ $('#resume_applicant').fileupload({
     dataType: 'json',
     formData: {uploader: 'applicant'},
     done: function(e, data) {
-    	alert(JSON.stringify(data));
     }
 });
